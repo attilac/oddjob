@@ -9,69 +9,51 @@
     <link rel="stylesheet" href="fonts/font-awesome/css/font-awesome.min.css">
   </head>
   <body class="app">
-  <nav class="navbar navbar-toggleable-sm navbar-inverse bg-inverse mb-3">
-    <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-    <a class="navbar-brand" href="index.html">AJAX - Open APIs</a>
+    <nav class="navbar navbar-toggleable-sm bg-white mb-3 navbar-light">
+      <div class="d-flex flex-wrap nav-link-container">
+        <div class="col-6 bg-inverse no-gutters navbar-inverse">
+         <a class="navbar-brand d-block text-center" href="index.html">Oddjob</a>
+       </div>
+       <div class="col-6 no-gutters text-center">
+        <button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+          <span class="navbar-toggler-icon"></span>
+        </button>
+        <div class="collapse navbar-collapse" id="navbarText">
+          <ul class="navbar-nav mx-auto">
+            <li class="nav-item">
+              <a class="nav-link" href="#" data-id="0" data-target="#albums">Albums</a>
+            </li>
+            <li class="nav-item">
+              <a id="videoPageLink" class="nav-link" href="#" data-id="1" data-target="#videos">Video</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
   </nav>
-<!--
-  <section class="app-filter-bar">
-    <div class="container-fluid">
-      <div class="card mb-3">
-        <div class="card-header bg-white">
+   
+    <section id="albums" class="page hidden">
+      <div class="container">
+        <div class="album-wrapper">
+        Album
+        </div>
+      </div>
+    </section>
+
+    <section id="videos" class="page hidden">
+      <div class="container">
+        <div class="video-wrapper">
           <div class="row">
-            <div class="col-6">
-              <label class="mr-2 text-muted" >Filter By</label>
-              <a class="btn btn-secondary dropdown-toggle collapsed mr-2" data-toggle="collapse" href="#collapseGenres" aria-expanded="false" aria-controls="collapseGenres">
-                Genres
-              </a>    
-              <a class="btn btn-secondary dropdown-toggle collapsed mr-2" data-toggle="collapse" href="#collapseYears" aria-expanded="false" aria-controls="collapseYears">
-                Year
-              </a> 
-              <a class="btn btn-secondary dropdown-toggle collapsed" data-toggle="collapse" href="#collapseRatings" aria-expanded="false" aria-controls="collapseRatings">
-                Rating
-              </a>                                          
-            </div> 
-            <div class="col-6">
-              <div class="sort-controllers text-right">
-              </div>            
+            <div class="col-12 col-lg-10 push-lg-1">
+              <div class="embed-responsive embed-responsive-16by9">
+                <div id="player"></div>
+                </div>
+                <div id="playlistContainer"></div>
             </div>
           </div>
         </div>
-        <div class="card-block">
-          <div class="collapse" id="collapseGenres">
-            <div class="genre-buttons p-3"></div>
-          </div>
-          <div class="collapse" id="collapseYears">
-              <div class="year-links p-3"></div>   
-          </div>
-          <div class="collapse" id="collapseRatings">
-              <div class="rating-links p-3"></div>   
-          </div>        
-        </div>
       </div>
-    </div>
-  </section>
-
-  <section class="app-filter-remove-bar">
-  <div class="container-fluid close-filter-buttons">
-    </div>
-  </section>
--->
-  <section class="app-content">
-    <div class="container-fluid">
-      <div class="card mb-3 pb-3">
-        <div class="card-block"> 
-          <header class="page-header">
-            <h1 class="display-6 text-uppercase d-inline mr-2">AJAX</h1>
-          </header>
-          <div class="content">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+    </section>  
 
     <!-- jQuery first, then Tether, then Bootstrap JS. -->
     <script src="https://code.jquery.com/jquery-3.1.1.slim.min.js" integrity="sha384-A7FZj7v+d/sdmMqp/nOQwliLvUsJfDHW+k9Omg/a/EheAdgtzNs3hpfag6Ed950n" crossorigin="anonymous"></script>
@@ -81,6 +63,7 @@
     <!--<script src="js/design-patterns-boilerplate.js"></script>-->
     <script src="js/utilities.js"></script>
     <script src="js/ajax-fetch.js"></script>
+    <script src="js/video.js"></script>
     <script src="js/templates.js"></script>
     <script src="js/app.js"></script>
   </body>

@@ -9,28 +9,46 @@ console.log( '-----Revealing Module Pattern-----');
  * Revealing Module Pattern
  * 
  */
-var ajaxFetch = (function() {
+var ajaxFetch = (function(urlToAPI) {
+
+	var dataUrl = urlToAPI;
 
 	/**
 	 * Fetch data from API
 	 * @param {String} dataurl - the url to the API
 	 */
-	var getDataFromAPI = function(dataUrl, callback){
-		fetch(dataUrl)
-			.then(function(response){
-				console.log('GET Response: ' + response.statusText);
-				// returns response in json format
-				return response.json();
-			})	
-			.catch(function(error){
-				console.log('Error message: ' + error.message);
-			})
-			.then(function(json){
-				//console.log(json);
-				callback(json);
-				//return json;
-			});
+	var getDataFromAPI = function(dataUrl = '', queryStrings = '', callback = ''){
+		fetch(dataUrl + queryStrings)
+		  .then(checkStatus)
+		  .then(parseJSON)
+		  .then(function(data) {
+		    //console.log('request succeeded with JSON response', data);
+		    callback(data);
+		  }).catch(function(error) {
+		    console.log('request failed', error);
+		  });	
 	};
+
+	/**
+	 * Fetch error handling
+	 * @param
+	 */
+	var checkStatus = function(response) {
+	  if (response.status >= 200 && response.status < 300) {
+	    return response;
+	  } else {
+	    var error = new Error(response.statusText);
+	    error.response = response;
+	    throw error;
+	  }
+	};	
+
+	/**
+	 * 
+	 */
+	var parseJSON = function(response) {
+		return response.json();
+	};	
 
 	/**
 	 * Post item to API
@@ -99,12 +117,23 @@ var ajaxFetch = (function() {
 		});	
 	};
 
+	/**
+	 * 
+	 * 
+	 */
+	var jsonToURI = function(json){ 
+		return Object.keys(json).map(function(key){ 
+		  return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]); 
+		}).join('&');		
+	};
+
     // Reveal public pointers to
     // private functions and properties
     return {
     	getDataFromAPI: getDataFromAPI,
     	postItemToAPI: postItemToAPI,
     	patchItemInDatabase: patchItemInDatabase,
-    	deleteItemInDatabase: deleteItemInDatabase 
+    	deleteItemInDatabase: deleteItemInDatabase,
+    	jsonToURI: jsonToURI
     };
 })();

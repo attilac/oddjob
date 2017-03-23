@@ -124,6 +124,19 @@ var utils = (function() {
 	};
 
 	/**
+	 * Returns an array of object property list
+	 * @param {String} key - the property to list
+	 * @return {Array} array - an array of object properites
+	 */	
+    var getObjectPropertyList = function(array, key) {
+    	return array
+    	.map(function(item) {
+    		//console.log(item);
+    		return item[key];
+    	});
+    };	
+
+	/**
 	 *
 	 */
 	var formatDate = function(date) {
@@ -190,6 +203,7 @@ var utils = (function() {
         sortArray: sortArray,
         getUniqueArray: getUniqueArray,
         getConcatArray: getConcatArray,
+        getObjectPropertyList: getObjectPropertyList,
         columnConform: columnConform,
         formatDate: formatDate
     };
