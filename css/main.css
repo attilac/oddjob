@@ -6020,10 +6020,19 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
     border-top: 10px solid #fff;
     clear: both; }
 
+@media (min-width: 768px) {
+  .navbar-toggleable-sm .navbar-nav .nav-link {
+    padding-right: 1.25rem;
+    padding-left: 1.25rem; } }
+
 .page {
   display: block; }
   .page.hidden {
     display: none; }
+
+.watch-title {
+  font-size: 1.875rem;
+  font-weight: 400; }
 
 .playlist .media {
   border-bottom: solid 1px #e7e7e7;
@@ -6035,5 +6044,8 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   height: auto; }
 
 .video-title {
-  font-size: 1rem;
+  font-size: 0.85rem;
   font-weight: 400; }
+
+.pagination {
+  font-size: 0.85rem; }

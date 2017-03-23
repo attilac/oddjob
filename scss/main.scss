@@ -46,11 +46,24 @@
 	}
 }
 
+
+.navbar-toggleable-sm .navbar-nav .nav-link {
+	@media (min-width: 768px){
+    	padding-right: 1.25rem;
+    	padding-left: 1.25rem;
+    }
+}
+
 .page {
 	display: block;
 	&.hidden {
 		display:none;
 	}
+}
+
+.watch-title {
+	font-size: 1.875rem;
+	font-weight: 400;
 }
 
 .playlist .media{
@@ -65,6 +78,10 @@
 }
 
 .video-title {
-	font-size: 1rem;
+	font-size: 0.85rem;
 	font-weight: 400;
+}
+
+.pagination {
+	font-size: 0.85rem;
 }
