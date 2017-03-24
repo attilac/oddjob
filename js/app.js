@@ -79,6 +79,7 @@ var view = (function() {
 		});
 
 		document.getElementById('videoPageLink').addEventListener('click', videoPageLinkOnClick, 'false');
+		document.getElementById('audioPageLink').addEventListener('click', audioPageLinkOnClick, 'false');
 
 	};
 
@@ -119,6 +120,14 @@ var view = (function() {
 		e.preventDefault();
 		videoPage.getPlaylistFromAPI();
 	};	
+
+	/**
+	 * 
+	 */ 
+	var audioPageLinkOnClick = function(e){
+		e.preventDefault();
+		albumPage.getAlbumsFromAPI();
+	};
 
 	/**
 	 * 
@@ -222,6 +231,13 @@ var view = (function() {
 		zenscroll.to(document.getElementById('videoContainer'), 500);
 	};
 
+	/**
+	 * 
+	 */ 
+	var handleLFMAlbumLoaded = function(json){
+		console.log(json);
+	};
+
     // Reveal public pointers to
     // private functions and properties
     return {
@@ -232,7 +248,8 @@ var view = (function() {
 		getNextPageToken: getNextPageToken,
 		setNextPageToken: setNextPageToken,
 		getPrevPageToken: getPrevPageToken,
-		setPrevPageToken: setPrevPageToken
+		setPrevPageToken: setPrevPageToken,
+		handleLFMAlbumLoaded: handleLFMAlbumLoaded
     };	
 })();
 

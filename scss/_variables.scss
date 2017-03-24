@@ -602,10 +602,10 @@ $zindex-tooltip:            1070 !default;
 // Navbar
 
 $navbar-border-radius:              $border-radius !default;
-$navbar-padding-x:                  0 !default;
-$navbar-padding-y:                  0 !default;
+$navbar-padding-x:                  $spacer !default;
+$navbar-padding-y:                  ($spacer / 2) !default;
 
-$navbar-brand-padding-y:            .75rem !default;
+$navbar-brand-padding-y:            .25rem !default;
 
 $navbar-toggler-padding-x:           0 !default;
 $navbar-toggler-padding-y:           0 !default;
@@ -630,7 +630,7 @@ $navbar-light-toggler-border:       rgba($black,.1) !default;
 
 $nav-item-margin:               .2rem !default;
 $nav-item-inline-spacer:        1rem !default;
-$nav-link-padding:              1em 0.5em !default;
+$nav-link-padding:              .5em 1em !default;
 $nav-link-hover-bg:             $gray-lighter !default;
 $nav-disabled-link-color:       $gray-light !default;
 

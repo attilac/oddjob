@@ -2,6 +2,7 @@
 @import url('https://fonts.googleapis.com/css?family=Fira+Sans:100,300,400,500,600');
 @import 'variables';
 @import '../../node_modules/bootstrap/scss/bootstrap';
+@import 'videoPlaylist';
 
 .bg-white {
 	background-color: #fff;
@@ -15,13 +16,9 @@ small{
 	width: 100%;
 }
 
-.navbar-brand {
-	margin: 0;
-	padding: 0.75rem 0;
-}
-
 .navbar-toggler {
-	position: relative;
+	top: 0.5rem;
+	right: 1rem;
     font-size: 1.6rem;
     line-height: 1;
     background: transparent;
@@ -34,19 +31,21 @@ small{
 }
 
 .navbar-light .navbar-nav .active  {
-	position: relative;
-	&::after{
-	    content: '';
-	    position: absolute;
-	    bottom: -10px;
-	    left: 50%;
-	    width: 0;
-	    height: 0;
-	    margin-left: -10px;
-	    border-left: 10px solid transparent;
-	    border-right: 10px solid transparent;
-	    border-top: 10px solid #fff;
-	    clear: both;
+	@media (min-width: 768px){
+		position: relative;
+		&::after{
+		    content: '';
+		    position: absolute;
+		    bottom: -18px;
+		    left: 50%;
+		    width: 0;
+		    height: 0;
+		    margin-left: -10px;
+		    border-left: 10px solid transparent;
+		    border-right: 10px solid transparent;
+		    border-top: 10px solid #fff;
+		    clear: both;
+		}
 	}
 }
 
@@ -63,41 +62,5 @@ small{
 	&.hidden {
 		display:none;
 	}
-}
-
-.watch-title {
-	font-size: 1.25rem;
-	font-weight: 400;
-}
-
-.playlist .media{
-	border-bottom: solid 1px $gray-lighter;
-	border-top: solid 1px $gray-lighter;
-	margin-top: -1px;
-	&:hover {
-		cursor: pointer;
-		.video-title-link {
-			text-decoration: underline;
-			color: $blue;
-		}
-	}
-}
-
-.video-thumb {
-	max-width: 96px;
-	height: auto;
-}
-
-.video-title {
-	font-size: 0.85rem;
-	font-weight: 400;
-}
-
-.playlist-index {
-	padding-right: 1rem;
-}
-
-.pagination {
-	font-size: 0.85rem;
 }
 
