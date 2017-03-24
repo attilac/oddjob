@@ -59,9 +59,10 @@ var templates = (function() {
 	 * @param 
 	 * @return 
 	 */
-	var moviePoster = ({thumbnails}) => {
+	var moviePoster = ({thumbnails, position}) => {
 		return `
-			<img src="${thumbnails.high.url}" class="video-thumb d-flex align-self-start mr-3" alt="">
+			<small class="playlist-index align-self-center">${position +1}</small>
+			<img src="${thumbnails.high.url}" class="d-flex align-self-start mr-3 video-thumb" alt="">
 		`;      
 	};
 
