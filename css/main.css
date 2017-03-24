@@ -6041,6 +6041,11 @@ small {
   border-bottom: solid 1px #e8e8e8;
   border-top: solid 1px #e8e8e8;
   margin-top: -1px; }
+  .playlist .media:hover {
+    cursor: pointer; }
+    .playlist .media:hover .video-title-link {
+      text-decoration: underline;
+      color: #2980b9; }
 
 .video-thumb {
   max-width: 96px;

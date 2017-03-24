@@ -87,6 +87,9 @@ var videoPage = (function() {
 		  done = true;
 		}
 		*/
+		if (event.data == YT.PlayerState.CUED){
+			//console.log('Video Cued');
+		}
 	};
 
 	/**

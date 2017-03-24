@@ -85,8 +85,8 @@ var view = (function() {
 	/**
 	 * 
 	 */ 
-	var pageLinkOnClick = function(e){
-		e.preventDefault();
+	var pageLinkOnClick = function(event){
+		event.preventDefault();
 		setCurrentPage(this.dataset.id);
 		document.querySelector(this.dataset.target).classList.remove('hidden');
 
@@ -152,17 +152,49 @@ var view = (function() {
  		document.querySelector('#nextButton').addEventListener('click', nextPage, 'false');
 		Array.prototype.slice.call(document.querySelectorAll('.video-title-link'))
 		.forEach(function(videoLink){
-			videoLink.addEventListener('click', playListItemOnClick, 'false');
-		}); 	
+			videoLink.addEventListener('click', videoTitleLinkOnClick, 'false');
+		}); 
+
+		Array.prototype.slice.call(document.querySelectorAll('.playlist .media'))
+		.forEach(function(playlistItem){
+			playlistItem.addEventListener('mouseenter', playListItemOnMouseEnter, 'false');
+			playlistItem.addEventListener('mouseleave', playListItemOnMouseLeave, 'false');	
+			playlistItem.addEventListener('click', playListItemOnClick, 'false');			
+		}); 		
 	};
 
 	/**
 	 * 
 	 */ 
-	var playListItemOnClick = function(e){
+	var videoTitleLinkOnClick = function(e){
 		e.preventDefault();
 		videoPage.cueVideoById(this.parentNode.parentNode.parentNode.parentNode.dataset.id);
 		document.getElementsByClassName('watch-title')[0].innerHTML = this.innerHTML;
+		_scrollToPlayer();
+	};	
+
+	/**
+	 * 
+	 */ 
+	var playListItemOnMouseEnter = function(e){
+		e.preventDefault();
+		this.classList.add('playlist-hover');
+	};
+
+	/**
+	 * 
+	 */ 
+	var playListItemOnMouseLeave = function(e){
+		e.preventDefault();
+		this.classList.remove('playlist-hover');
+	};	
+
+	/**
+	 * 
+	 */
+	var playListItemOnClick = function(e){
+		e.preventDefault();
+		this.querySelector('.video-title-link').click();
 	};	
 
 	/**
@@ -171,6 +203,7 @@ var view = (function() {
 	var nextPage = function(e) {
 		e.preventDefault();
 		videoPage.getPlaylistFromAPI('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', getNextPageToken());
+		_scrollToPlayer();
 	};
 
 	/**
@@ -179,7 +212,15 @@ var view = (function() {
 	var previousPage = function(e) {
 		e.preventDefault();
 		videoPage.getPlaylistFromAPI('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', getPrevPageToken());
+		_scrollToPlayer();
 	};	
+
+	/**
+	 * Scroll to video player
+	 */ 
+	var _scrollToPlayer = function() {
+		zenscroll.to(document.getElementById('videoContainer'), 500);
+	};
 
     // Reveal public pointers to
     // private functions and properties

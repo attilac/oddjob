@@ -22,7 +22,7 @@ var ajaxFetch = (function(urlToAPI) {
 		  .then(checkStatus)
 		  .then(parseJSON)
 		  .then(function(data) {
-		    console.log('request succeeded with JSON response', data);
+		    //console.log('request succeeded with JSON response', data);
 		    callback(data);
 		  }).catch(function(error) {
 		    console.log('request failed', error);

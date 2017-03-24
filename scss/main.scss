@@ -74,6 +74,13 @@ small{
 	border-bottom: solid 1px $gray-lighter;
 	border-top: solid 1px $gray-lighter;
 	margin-top: -1px;
+	&:hover {
+		cursor: pointer;
+		.video-title-link {
+			text-decoration: underline;
+			color: $blue;
+		}
+	}
 }
 
 .video-thumb {
