@@ -84,14 +84,14 @@ var templates = (function() {
 	 * @return 
 	 */
 	var playlistPagination = () => {
-	    var nextClass = videoView.getNextPageToken() || '' ? '' : 'disabled';
-	    var prevClass = videoView.getPrevPageToken() || '' ? '' : 'disabled';
+	    var nextClass = videoApi.getNextPageToken() || '' ? '' : 'disabled';
+	    var prevClass = videoApi.getPrevPageToken() || '' ? '' : 'disabled';
 
 		return `
 			<nav aria-label="Page navigation" class="p-3">
 			  <ul class="pagination m-0">
-			    <li id="prevButton" class="page-item ${prevClass}"><a class="page-link" href="#" data-prev="${videoView.getPrevPageToken()}">Previous</a></li>
-			    <li id="nextButton" class="page-item ${nextClass}"><a class="page-link" href="#" data-next="${videoView.getNextPageToken()}">Next</a></li>
+			    <li id="prevButton" class="page-item ${prevClass}"><a class="page-link" href="#" data-prev="${videoApi.getPrevPageToken()}">Previous</a></li>
+			    <li id="nextButton" class="page-item ${nextClass}"><a class="page-link" href="#" data-next="${videoApi.getNextPageToken()}">Next</a></li>
 			  </ul>
 			</nav>
 		`;

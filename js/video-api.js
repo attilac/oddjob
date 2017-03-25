@@ -9,6 +9,8 @@ var videoApi = (function() {
 	var player;   
 	var done = false;
 	var _currentPlaylist;
+	var _nextPageToken = 0;
+	var _prevPageToken = 0;
 
 	/**
 	 * 
@@ -40,7 +42,35 @@ var videoApi = (function() {
 			//console.log(item.snippet);
 			return item.snippet.resourceId.videoId === videoId;
 		});
-	};		
+	};	
+
+	/**
+	 * 
+	 */ 
+	var getNextPageToken = function(){
+		return _nextPageToken;
+	};	
+
+	/**
+	 * 
+	 */ 
+	var setNextPageToken = function(token){
+		_nextPageToken = token;
+	};	
+
+	/**
+	 * 
+	 */ 
+	var getPrevPageToken = function(){
+		return _prevPageToken;
+	};	
+
+	/**
+	 * 
+	 */ 
+	var setPrevPageToken = function(token){
+		_prevPageToken = token;
+	};			
 
 	/**
 	 * 
@@ -172,7 +202,11 @@ var videoApi = (function() {
     	done: done, 
     	setCurrentPlaylist: setCurrentPlaylist,
     	getCurrentPlaylist: getCurrentPlaylist,
-    	getCurrentVideo: getCurrentVideo       
+    	getCurrentVideo: getCurrentVideo,
+		getNextPageToken: getNextPageToken,
+		setNextPageToken: setNextPageToken,
+		getPrevPageToken: getPrevPageToken,
+		setPrevPageToken: setPrevPageToken    	       
     };
 })();  
 

@@ -8,43 +8,14 @@ console.log('---App');
  */
 var videoView = (function() {
 
-	var _nextPageToken = 0;
-	var _prevPageToken = 0;
-
-	/**
-	 * 
-	 */ 
-	var getNextPageToken = function(){
-		return _nextPageToken;
-	};	
-
-	/**
-	 * 
-	 */ 
-	var setNextPageToken = function(token){
-		_nextPageToken = token;
-	};	
-
-	/**
-	 * 
-	 */ 
-	var getPrevPageToken = function(){
-		return _prevPageToken;
-	};	
-
-	/**
-	 * 
-	 */ 
-	var setPrevPageToken = function(token){
-		_prevPageToken = token;
-	};			
+		
 	/**
 	 * 
 	 */ 
 	var handleYtPlaylistLoaded = function(json) {
 		//console.log(json.items);
-	    setNextPageToken(json.nextPageToken);
-	    setPrevPageToken(json.prevPageToken);
+	    videoApi.setNextPageToken(json.nextPageToken);
+	    videoApi.setPrevPageToken(json.prevPageToken);
 	    videoApi.setCurrentPlaylist(json.items);
 
 	    var playlistItems = json.items;
@@ -123,7 +94,7 @@ var videoView = (function() {
 	 */ 	
 	var nextPage = function(e) {
 		e.preventDefault();
-		videoApi.getPlaylistFromAPI('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', getNextPageToken());
+		videoApi.getPlaylistFromAPI('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', videoApi.getNextPageToken());
 		_scrollToPlayer();
 	};
 
@@ -132,7 +103,7 @@ var videoView = (function() {
 	 */ 	
 	var previousPage = function(e) {
 		e.preventDefault();
-		videoApi.getPlaylistFromAPI('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', getPrevPageToken());
+		videoApi.getPlaylistFromAPI('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', videoApi.getPrevPageToken());
 		_scrollToPlayer();
 	};	
 
@@ -146,10 +117,6 @@ var videoView = (function() {
     // Reveal public pointers to
     // private functions and properties
     return {
-		handleYtPlaylistLoaded: handleYtPlaylistLoaded,
-		getNextPageToken: getNextPageToken,
-		setNextPageToken: setNextPageToken,
-		getPrevPageToken: getPrevPageToken,
-		setPrevPageToken: setPrevPageToken,
+		handleYtPlaylistLoaded: handleYtPlaylistLoaded
     };	
 })();	
