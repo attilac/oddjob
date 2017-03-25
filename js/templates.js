@@ -18,19 +18,19 @@ var templates = (function() {
 	 * @param 
 	 * @return 
 	 */
-	var movieList = (json) => {
+	var videoList = (json) => {
 		let playlist = json.items;
 		let lastItem = playlist.length - 1;
 		//console.log(playlist);
 		return `
 			<div class="playlist bg-white">
 				<div class="info-strip p-3">
-					<small class="text-muted">Displaying ${playlist[0].snippet.position + 1} to ${playlist[lastItem].snippet.position + 1} of ${json.pageInfo.totalResults} movies</small>
+					<small class="text-muted">Displaying ${playlist[0].snippet.position + 1} to ${playlist[lastItem].snippet.position + 1} of ${json.pageInfo.totalResults} videos</small>
 				</div>
-			 ${playlist.map(playlistItem => movieItem({
+			 ${playlist.map(playlistItem => videoItem({
 			  playlistItem,
-			  thumbnails: moviePoster(playlistItem.snippet),
-			  title: movieHeader(playlistItem.snippet)
+			  thumbnails: videoPoster(playlistItem.snippet),
+			  title: videoHeader(playlistItem.snippet)
 			})).join('')}  
 				${playlistPagination()}
 			</div>
@@ -43,7 +43,7 @@ var templates = (function() {
 	 * @param 
 	 * @return 
 	 */
-	var movieItem = ({ playlistItem, title, thumbnails}) => {
+	var videoItem = ({ playlistItem, title, thumbnails}) => {
 	  return `
 	 <div class="media p-3" data-id="${playlistItem.snippet.resourceId.videoId}"> 	 
   		${thumbnails}
@@ -59,7 +59,7 @@ var templates = (function() {
 	 * @param 
 	 * @return 
 	 */
-	var moviePoster = ({thumbnails, position}) => {
+	var videoPoster = ({thumbnails, position}) => {
 		return `
 			<small class="playlist-index align-self-center">${position +1}</small>
 			<img src="${thumbnails.high.url}" class="d-flex align-self-start mr-3 video-thumb" alt="">
@@ -71,7 +71,7 @@ var templates = (function() {
 	 * @param 
 	 * @return 
 	 */
-	var movieHeader = ({title, description}) => {
+	var videoHeader = ({title, description}) => {
 		return `
 		<div class="video-item-header">
 		 	<h5 class="video-title mt-0"><a href="#" class="video-title-link" title="${description}">${title}</a></h5>
@@ -96,12 +96,26 @@ var templates = (function() {
 			</nav>
 		`;
 	};	
-   
+
+	/**
+	 * Template
+	 * @return 
+	 */   
+	var videoMeta = (videoObject) => {
+		//console.log(videoObject.snippet.title);
+		return `
+            <div class="video-header">
+              <h2 class="watch-title mt-0">${videoObject.snippet.title}</h2>
+              <small class="watch-description mb-0">${videoObject.snippet.description}</small>
+            </div>		
+		`;
+	};
 
 	// Reveal public pointers to
     // private functions and properties
     return {
-        movieList: movieList,
-        playlistPagination: playlistPagination	
+        videoList: videoList,
+        playlistPagination: playlistPagination,
+        videoMeta: videoMeta	
     };
 })();

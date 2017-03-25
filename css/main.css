@@ -6004,19 +6004,32 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   border-color: transparent; }
 
 @media (min-width: 768px) {
-  .navbar-light .navbar-nav .active {
+  .navbar-light .navbar-nav .nav-link:hover {
     position: relative; }
-    .navbar-light .navbar-nav .active::after {
+    .navbar-light .navbar-nav .nav-link:hover::after {
       content: '';
       position: absolute;
       left: 20%;
-      bottom: 0.85rem;
+      bottom: 0.875rem;
       width: 60%;
-      border-bottom: 3px solid #c0392b;
+      border-bottom: 2px solid #333333;
+      clear: both; } }
+
+@media (min-width: 768px) {
+  .navbar-light .navbar-nav .active .nav-link {
+    position: relative; }
+    .navbar-light .navbar-nav .active .nav-link::after {
+      content: '';
+      position: absolute;
+      left: 20%;
+      bottom: 0.875rem;
+      width: 60%;
+      border-bottom: 2px solid #333333;
       clear: both; } }
 
 .navbar-toggleable-sm .navbar-nav .nav-link {
   font-weight: 400;
+  font-size: 0.875rem;
   text-transform: uppercase;
   border-bottom: 1px solid #e8e8e8;
   border-top: 1px solid #e8e8e8;
@@ -6043,7 +6056,8 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
   margin-top: -1px; }
   .playlist .media .video-title-link {
     color: #000;
-    font-weight: 400; }
+    font-weight: 400;
+    font-size: 0.875rem; }
   .playlist .media:hover {
     cursor: pointer; }
     .playlist .media:hover .video-title-link {

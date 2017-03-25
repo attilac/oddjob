@@ -1,0 +1,76 @@
+{
+    "albums": [
+        {
+            "title": "Oddjob",
+            "year": "2002",
+            "cover": "oddjob-oddjob-cover.jpg",
+            "description": "",
+            "label": "Amigo",
+            "id": 0
+        },
+        {
+            "title": "Koyo",
+            "year": "2003",
+            "cover": "oddjob-koyo-cover.jpg",
+            "description": "",
+            "label": "Amigo",
+            "id": 1
+        },
+        {
+            "title": "Luma",
+            "year": "2006",
+            "cover": "oddjob-luma-cover.jpg",
+            "description": "",
+            "label": "Amigo",
+            "id": 2
+        },
+        {
+            "title": "Sumo",
+            "year": "2008",
+            "cover": "oddjob-sumo-cover.jpg",
+            "description": "",
+            "label": "ACT",
+            "id": 3
+        },
+        {
+            "title": "Clint",
+            "year": "2010",
+            "cover": "oddjob-clint-cover.jpg",
+            "description": "",
+            "label": "ACT",
+            "id": 4
+        },    
+        {
+            "title": "Jazzoo",
+            "year": "2015",
+            "cover": "oddjob-jazzoo-cover.png",
+            "description": "",
+            "label": "Headspin Recordings",
+            "id": 5
+        },
+        {
+            "title": "Live in Bremen",
+            "year": "2014",
+            "cover": "oddjob-live-in-bremen-back.jpg",
+            "description": "",
+            "label": "Headspin Recordings",
+            "id": 6
+        },    
+        {
+            "title": "Folk",
+            "year": "2015",
+            "cover": "oddjob-folk-cover-1400x1400.jpg",
+            "description": "",
+            "label": "Caprice",
+            "id": 7
+        },
+        {
+            "title": "Oddjob plays Weather Report",
+            "year": "2016",
+            "cover": "OJPWR.jpg",
+            "description": "",
+            "label": "Cosmos Music Group",
+            "id": 8
+        }                    
+    ]
+}

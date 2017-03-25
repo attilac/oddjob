@@ -10,10 +10,13 @@
 	border-bottom: solid 1px $gray-lighter;
 	border-top: solid 1px $gray-lighter;
 	margin-top: -1px;
+
 	.video-title-link {
 		color: $black;
 		font-weight: 400;
+		font-size: 0.875rem;
 	}
+
 	&:hover {
 		cursor: pointer;
 		.video-title-link {

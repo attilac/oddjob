@@ -45,12 +45,13 @@ var videoView = (function() {
 		//console.log(json.items);
 	    setNextPageToken(json.nextPageToken);
 	    setPrevPageToken(json.prevPageToken);
+	    videoApi.setCurrentPlaylist(json.items);
 
 	    var playlistItems = json.items;
 	    if (playlistItems) {
-	      document.getElementById('playlistContainer').innerHTML = templates.movieList(json);
+      		document.getElementById('playlistContainer').innerHTML = templates.videoList(json);
 	    } else {
-	    	document.getElementById('playlistContainer').innerHTML.html('Sorry you have no uploaded videos');
+    		document.getElementById('playlistContainer').innerHTML.html('Sorry you have no uploaded videos');
 	    }
 		addPlaylistEventHandlers();
 
@@ -59,7 +60,8 @@ var videoView = (function() {
 		}else{
 			videoApi.cuePlaylist('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', 'playlist', playlistItems[0].snippet.position);
 		}
-		document.getElementsByClassName('watch-title')[0].innerHTML =  playlistItems[0].snippet.title;
+
+		document.getElementById('videoInfo').innerHTML = templates.videoMeta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), playlistItems[0].snippet.resourceId.videoId));
 	};
 
 	/**
@@ -86,8 +88,9 @@ var videoView = (function() {
 	 */ 
 	var videoTitleLinkOnClick = function(e){
 		e.preventDefault();
-		videoApi.cueVideoById(this.parentNode.parentNode.parentNode.parentNode.dataset.id);
-		document.getElementsByClassName('watch-title')[0].innerHTML = this.innerHTML;
+		let videoId = this.parentNode.parentNode.parentNode.parentNode.dataset.id;
+		videoApi.cueVideoById(videoId);
+		document.getElementById('videoInfo').innerHTML = templates.videoMeta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), videoId));
 		_scrollToPlayer();
 	};	
 

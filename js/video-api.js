@@ -8,6 +8,7 @@ var videoApi = (function() {
 
 	var player;   
 	var done = false;
+	var _currentPlaylist;
 
 	/**
 	 * 
@@ -15,6 +16,31 @@ var videoApi = (function() {
 	var init = function(){
 		_getYoutubeApiScript();			
 	};
+
+	/**
+	 * 
+	 */
+	var setCurrentPlaylist = function(json){
+		_currentPlaylist = json;
+	};
+
+	/**
+	 * 
+	 */
+	var getCurrentPlaylist = function(){
+		return _currentPlaylist;
+	};	
+
+	/**
+	 * 
+	 */
+	var getCurrentVideo = function(playlist, videoId){
+		return playlist
+		.find(function(item){
+			//console.log(item.snippet);
+			return item.snippet.resourceId.videoId === videoId;
+		});
+	};		
 
 	/**
 	 * 
@@ -127,8 +153,7 @@ var videoApi = (function() {
 	 * 
 	 */
 	var cueVideoById = function(videoId) {
-		player.cueVideoById(videoId
-		);
+		player.cueVideoById(videoId);
     };	
 
 
@@ -144,7 +169,10 @@ var videoApi = (function() {
         cueVideoById: cueVideoById,
         removePlayer: removePlayer,
     	player: player,
-    	done: done,        
+    	done: done, 
+    	setCurrentPlaylist: setCurrentPlaylist,
+    	getCurrentPlaylist: getCurrentPlaylist,
+    	getCurrentVideo: getCurrentVideo       
     };
 })();  
 
