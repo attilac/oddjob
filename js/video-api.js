@@ -1,10 +1,10 @@
 /*jshint esversion: 6 */
 
 /**
- * Video Player
+ * Video YouTube API functions
  * 
  */
-var videoPage = (function() {
+var videoApi = (function() {
 
 	var player;   
 	var done = false;
@@ -46,7 +46,7 @@ var videoPage = (function() {
 		if (pageToken) {
 	    	requestOptions.pageToken = pageToken;
 	  	}
-		ajaxFetch.getDataFromAPI('https://www.googleapis.com/youtube/v3/playlistItems?', ajaxFetch.jsonToURI(requestOptions), view.handleYtPlaylistLoaded);  		
+		ajaxFetch.getDataFromAPI('https://www.googleapis.com/youtube/v3/playlistItems?', ajaxFetch.jsonToURI(requestOptions), videoView.handleYtPlaylistLoaded);  		
 	};		
 
 	/**
