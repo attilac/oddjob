@@ -6081,7 +6081,13 @@ small {
 
 @media (max-width: 767px) {
   #videos .container {
-    width: 100%; } }
+    width: 100%; }
+  #videos .row {
+    margin-right: 0;
+    margin-left: 0; }
+  #videos .col-12 {
+    padding-right: 0;
+    padding-left: 0; } }
 
 @media (min-width: 768px) {
   #videos .container {
