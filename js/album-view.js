@@ -36,7 +36,7 @@ var albumView = (function() {
 	 */
 	var albumItemOnClick = function(e){
 		e.preventDefault();
-		console.log(this.parentNode.dataset.title);
+		//console.log(this.parentNode.dataset.title);
 		albumApi.getTracksFromLfmApi(this.parentNode.dataset.title);
 		//albumApi.getTracksFromLfmApi('Whats up');
 	};

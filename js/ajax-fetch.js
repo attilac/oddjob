@@ -16,34 +16,41 @@ var ajaxFetch = (function(urlToAPI) {
 	/**
 	 * Fetch data from API
 	 * @param {String} dataurl - the url to the API
+	 * @param {String} queryStrings - optional url parameters
+	 * @param {function} callback - the callback function
 	 */
 	var getDataFromApi = function(dataUrl = '', queryStrings = '', callback = ''){
 		fetch(dataUrl + queryStrings)
 		  .then(checkStatus)
 		  .then(parseJSON)
-		  .then(function(data) {
-		    //console.log('request succeeded with JSON response', data);
+		  .then(function(reslut) {
+		    console.log('request succeeded with JSON response:');
+		    console.log(reslut);
 		    if(callback){
-		    	callback(data);
+		    	callback(reslut);
 		    }
 		  })
 		  .catch(function(error) {
 		    console.log('request failed', error);
+		    displayErrorMessage(error);
 		  });	
 	};
 
 	/**
 	 * Fetch error handling
-	 * @param
+	 * @param {Object} response - the response object
 	 */
 	var checkStatus = function(response) {
-	  if (response.status >= 200 && response.status < 300) {
-	    return response;
-	  } else {
-	    var error = new Error(response.statusText);
-	    error.response = response;
-	    throw error;
-	  }
+		//console.log(typeof(response));
+		console.log('GET status: ' + response.status);
+		if (response.status >= 200 && response.status < 300) {
+			console.log(response);
+			return response;
+		} else {
+			var error = new Error(response.statusText);
+			error.response = response;
+			throw error;
+		}
 	};	
 
 	/**
@@ -51,6 +58,14 @@ var ajaxFetch = (function(urlToAPI) {
 	 */
 	var parseJSON = function(response) {
 		return response.json();
+	};	
+
+	/**
+	 * 
+	 */
+	var displayErrorMessage = function(error){
+		document.querySelector('.ajax-error-container').classList.remove('hidden');
+		document.querySelector('.ajax-error-container .alert-warning').innerHTML = `<strong>Oh snap!</strong> There was an error. <em>${error}</em>`;
 	};	
 
 	/**

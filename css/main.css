@@ -6280,6 +6280,9 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 small {
   font-weight: 300; }
 
+.hidden {
+  display: none; }
+
 .page {
   display: block; }
   .page.hidden {
