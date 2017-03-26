@@ -92,7 +92,7 @@ var videoApi = (function() {
 	/**
 	 * 
 	 */ 
-	var getPlaylistFromAPI = function(playlistId='PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', pageToken = '' ) {
+	var getPlaylistFromApi = function(playlistId='PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', pageToken = '' ) {
 		var requestOptions = {
 			part: 'snippet', 
 			playlistId: playlistId, 
@@ -102,7 +102,7 @@ var videoApi = (function() {
 		if (pageToken) {
 	    	requestOptions.pageToken = pageToken;
 	  	}
-		ajaxFetch.getDataFromAPI('https://www.googleapis.com/youtube/v3/playlistItems?', ajaxFetch.jsonToURI(requestOptions), videoView.handleYtPlaylistLoaded);  		
+		ajaxFetch.getDataFromApi('https://www.googleapis.com/youtube/v3/playlistItems?', ajaxFetch.jsonToURI(requestOptions), videoView.handleYtPlaylistLoaded);  		
 	};		
 
 	/**
@@ -191,7 +191,7 @@ var videoApi = (function() {
     // private functions and properties
     return {
         init: init(),
-        getPlaylistFromAPI: getPlaylistFromAPI,
+        getPlaylistFromApi: getPlaylistFromApi,
         createYTPlayer: createYTPlayer,
         playVideo: playVideo,
         stopVideo: stopVideo,

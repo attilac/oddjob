@@ -8,31 +8,31 @@
 */
 
 /**
- * Templates
+ * Video Template
  * 
  */
-var templates = (function() {
+var videoTemplate = (function() {
 
 	/**
 	 * Template
 	 * @param 
 	 * @return 
 	 */
-	var videoList = (json) => {
-		let playlist = json.items;
-		let lastItem = playlist.length - 1;
-		//console.log(playlist);
+	var playlist = (json) => {
+		let items = json.items;
+		let lastItem = items.length - 1;
+		//console.log(items);
 		return `
 			<div class="playlist bg-white">
 				<div class="info-strip p-3">
-					<small class="text-muted">Displaying ${playlist[0].snippet.position + 1} to ${playlist[lastItem].snippet.position + 1} of ${json.pageInfo.totalResults} videos</small>
+					<small class="text-muted">Displaying ${items[0].snippet.position + 1} to ${items[lastItem].snippet.position + 1} of ${json.pageInfo.totalResults} videos</small>
 				</div>
-			 ${playlist.map(playlistItem => videoItem({
-			  playlistItem,
-			  thumbnails: videoPoster(playlistItem.snippet),
-			  title: videoHeader(playlistItem.snippet)
+			 ${items.map(item => playlistItem({
+			  item,
+			  thumbnails: thumbnail(item.snippet),
+			  title: header(item.snippet)
 			})).join('')}  
-				${playlistPagination()}
+				${pagination()}
 			</div>
 		`;
 	};
@@ -43,9 +43,9 @@ var templates = (function() {
 	 * @param 
 	 * @return 
 	 */
-	var videoItem = ({ playlistItem, title, thumbnails}) => {
+	var playlistItem = ({ item, title, thumbnails}) => {
 	  return `
-	 <div class="media p-3" data-id="${playlistItem.snippet.resourceId.videoId}"> 	 
+	 <div class="media p-3" data-id="${item.snippet.resourceId.videoId}"> 	 
   		${thumbnails}
   		<div class="media-body">
  	  		${title}
@@ -59,7 +59,7 @@ var templates = (function() {
 	 * @param 
 	 * @return 
 	 */
-	var videoPoster = ({thumbnails, position}) => {
+	var thumbnail = ({thumbnails, position}) => {
 		return `
 			<small class="playlist-index align-self-center">${position +1}</small>
 			<img src="${thumbnails.high.url}" class="d-flex align-self-start mr-3 video-thumb" alt="">
@@ -71,7 +71,7 @@ var templates = (function() {
 	 * @param 
 	 * @return 
 	 */
-	var videoHeader = ({title, description}) => {
+	var header = ({title, description}) => {
 		return `
 		<div class="video-item-header">
 		 	<h5 class="video-title mt-0"><a href="#" class="video-title-link" title="${description}">${title}</a></h5>
@@ -83,7 +83,7 @@ var templates = (function() {
 	 * Template
 	 * @return 
 	 */
-	var playlistPagination = () => {
+	var pagination = () => {
 	    var nextClass = videoApi.getNextPageToken() || '' ? '' : 'disabled';
 	    var prevClass = videoApi.getPrevPageToken() || '' ? '' : 'disabled';
 
@@ -101,7 +101,7 @@ var templates = (function() {
 	 * Template
 	 * @return 
 	 */   
-	var videoMeta = (videoObject) => {
+	var meta = (videoObject) => {
 		//console.log(videoObject.snippet.title);
 		return `
             <div class="video-header">
@@ -114,8 +114,8 @@ var templates = (function() {
 	// Reveal public pointers to
     // private functions and properties
     return {
-        videoList: videoList,
-        playlistPagination: playlistPagination,
-        videoMeta: videoMeta	
+        playlist: playlist,
+        pagination: pagination,
+        meta: meta,
     };
 })();

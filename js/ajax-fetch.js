@@ -17,13 +17,15 @@ var ajaxFetch = (function(urlToAPI) {
 	 * Fetch data from API
 	 * @param {String} dataurl - the url to the API
 	 */
-	var getDataFromAPI = function(dataUrl = '', queryStrings = '', callback = ''){
+	var getDataFromApi = function(dataUrl = '', queryStrings = '', callback = ''){
 		fetch(dataUrl + queryStrings)
 		  .then(checkStatus)
 		  .then(parseJSON)
 		  .then(function(data) {
 		    //console.log('request succeeded with JSON response', data);
-		    callback(data);
+		    if(callback){
+		    	callback(data);
+		    }
 		  }).catch(function(error) {
 		    console.log('request failed', error);
 		  });	
@@ -54,7 +56,7 @@ var ajaxFetch = (function(urlToAPI) {
 	 * Post item to API
 	 * @param {Object} data - a JSON Object
 	 */
-	var postItemToAPI = function(data){
+	var postItemToApi = function(data){
 		//console.log(typeof(data));
 		fetch(getApiUrl(),
 		{
@@ -130,8 +132,8 @@ var ajaxFetch = (function(urlToAPI) {
     // Reveal public pointers to
     // private functions and properties
     return {
-    	getDataFromAPI: getDataFromAPI,
-    	postItemToAPI: postItemToAPI,
+    	getDataFromApi: getDataFromApi,
+    	postItemToApi: postItemToApi,
     	patchItemInDatabase: patchItemInDatabase,
     	deleteItemInDatabase: deleteItemInDatabase,
     	jsonToURI: jsonToURI

@@ -79,7 +79,7 @@ var view = (function() {
 	 */ 
 	var videoPageLinkOnClick = function(e){
 		e.preventDefault();
-		videoApi.getPlaylistFromAPI();
+		videoApi.getPlaylistFromApi();
 	};	
 
 	/**
@@ -87,28 +87,16 @@ var view = (function() {
 	 */ 
 	var audioPageLinkOnClick = function(e){
 		e.preventDefault();
-		albumPage.getAlbumsFromAPI();
+		albumApi.getAlbumsFromApi();
 	};
 
-	/**
-	 * ------------------------------------------------------------------------
-	 *  Albums
-	 * ------------------------------------------------------------------------
-	*/
-	/**
-	 * 
-	 */ 
-	var handleLFMAlbumLoaded = function(json){
-		console.log(json);
-	};
 
     // Reveal public pointers to
     // private functions and properties
     return {
 		init: init(),
 		getCurrentPage: getCurrentPage,
-		setCurrentPage: getCurrentPage,
-		handleLFMAlbumLoaded: handleLFMAlbumLoaded
+		setCurrentPage: getCurrentPage
     };	
 })();
 

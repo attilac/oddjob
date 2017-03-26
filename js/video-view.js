@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-console.log('---App');
+console.log('---Video View');
 
 /**
  * View for Video Playlist
@@ -20,7 +20,7 @@ var videoView = (function() {
 
 	    var playlistItems = json.items;
 	    if (playlistItems) {
-      		document.getElementById('playlistContainer').innerHTML = templates.videoList(json);
+      		document.getElementById('playlistContainer').innerHTML = videoTemplate.playlist(json);
 	    } else {
     		document.getElementById('playlistContainer').innerHTML.html('Sorry you have no uploaded videos');
 	    }
@@ -32,7 +32,7 @@ var videoView = (function() {
 			videoApi.cuePlaylist('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', 'playlist', playlistItems[0].snippet.position);
 		}
 
-		document.getElementById('videoInfo').innerHTML = templates.videoMeta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), playlistItems[0].snippet.resourceId.videoId));
+		document.getElementById('videoInfo').innerHTML = videoTemplate.meta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), playlistItems[0].snippet.resourceId.videoId));
 	};
 
 	/**
@@ -61,7 +61,7 @@ var videoView = (function() {
 		e.preventDefault();
 		let videoId = this.parentNode.parentNode.parentNode.parentNode.dataset.id;
 		videoApi.cueVideoById(videoId);
-		document.getElementById('videoInfo').innerHTML = templates.videoMeta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), videoId));
+		document.getElementById('videoInfo').innerHTML = videoTemplate.meta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), videoId));
 		_scrollToPlayer();
 	};	
 

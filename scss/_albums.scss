@@ -1,0 +1,30 @@
+.album-list{
+	.album-detail-link{
+		display: block;
+		color: $body-color;
+		text-decoration: none;
+		.card {
+			transition: all .35s ease;
+		}
+		&:hover {
+			.card {
+				background-color: $link-color;
+				color: #fff;
+			}	
+		}
+	}
+	.album-cover {
+		position: relative;
+		padding-bottom: 100%;
+		height: 0;
+		.album-cover-inner{
+			position: absolute;
+			width: 100%;
+			height: 100%;
+		}
+	}
+
+	.album-title {
+		font-size: 1rem;
+	}
+}

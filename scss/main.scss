@@ -4,6 +4,7 @@
 @import '../../node_modules/bootstrap/scss/bootstrap';
 @import 'navbar';
 @import 'videoPlaylist';
+@import 'albums';
 
 .bg-white {
 	background-color: #fff;
@@ -46,4 +47,13 @@ small{
 	  		padding-left: 15px; 
 		}
 	}
+}
+
+.card-columns {
+  @include media-breakpoint-only(sm) {
+    column-count: 2;
+  }
+  @include media-breakpoint-only(md) {
+    column-count: 3;
+  }
 }
