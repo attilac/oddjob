@@ -149,12 +149,12 @@ $spacers: (
     y: 0
   ),
   1: (
-    x: ($spacer-x * .25),
-    y: ($spacer-y * .25)
+    x: ($spacer-x * .375),
+    y: ($spacer-y * .375)
   ),
   2: (
-    x: ($spacer-x * .5),
-    y: ($spacer-y * .5)
+    x: ($spacer-x * .75),
+    y: ($spacer-y * .75)
   ),
   3: (
     x: $spacer-x,
@@ -165,9 +165,13 @@ $spacers: (
     y: ($spacer-y * 1.5)
   ),
   5: (
+    x: ($spacer-x * 2.25),
+    y: ($spacer-y * 2.25)
+  ),
+  6: (
     x: ($spacer-x * 3),
     y: ($spacer-y * 3)
-  )
+  )  
 ) !default;
 $border-width: 1px !default;
 

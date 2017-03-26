@@ -26,7 +26,8 @@ var ajaxFetch = (function(urlToAPI) {
 		    if(callback){
 		    	callback(data);
 		    }
-		  }).catch(function(error) {
+		  })
+		  .catch(function(error) {
 		    console.log('request failed', error);
 		  });	
 	};

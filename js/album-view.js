@@ -23,8 +23,12 @@ var albumView = (function() {
 	/**
 	 * 
 	 */ 
-	var handleSingleAlbumLoaded = function(json){
-		console.log(json);
+	var handleSingleAlbumLoaded = function(response){
+		let errorMessage = response.error || '' ? response.message : '';
+		console.log(errorMessage);
+		let album = response.album || '' ? response.album: '';
+		console.log(album);
+		console.log(utils.getObjectPropertyList(album.tracks.track, 'name'));
 	};	
 
 	/**
@@ -34,6 +38,7 @@ var albumView = (function() {
 		e.preventDefault();
 		console.log(this.parentNode.dataset.title);
 		albumApi.getTracksFromLfmApi(this.parentNode.dataset.title);
+		//albumApi.getTracksFromLfmApi('Whats up');
 	};
 
     // Reveal public pointers to
