@@ -6283,6 +6283,9 @@ small {
 .hidden {
   display: none; }
 
+.ajax-load-indicator-container {
+  font-size: 3rem; }
+
 .page {
   display: block; }
   .page.hidden {

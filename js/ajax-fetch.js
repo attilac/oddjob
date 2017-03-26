@@ -20,20 +20,21 @@ var ajaxFetch = (function(urlToAPI) {
 	 * @param {function} callback - the callback function
 	 */
 	var getDataFromApi = function(dataUrl = '', queryStrings = '', callback = ''){
+		showLoadingSpinner();
 		fetch(dataUrl + queryStrings)
 		  .then(checkStatus)
 		  .then(parseJSON)
-		  .then(function(reslut) {
-		    console.log('request succeeded with JSON response:');
-		    console.log(reslut);
+		  .then(function(result) {
+		  	console.log('JSON response: ' + result);
 		    if(callback){
-		    	callback(reslut);
+		    	callback(result);
 		    }
 		  })
 		  .catch(function(error) {
 		    console.log('request failed', error);
 		    displayErrorMessage(error);
 		  });	
+		  hideLoadingSpinner();
 	};
 
 	/**
@@ -44,6 +45,7 @@ var ajaxFetch = (function(urlToAPI) {
 		//console.log(typeof(response));
 		console.log('GET status: ' + response.status);
 		if (response.status >= 200 && response.status < 300) {
+			console.log(`request url: ${response.url}`);
 			console.log(response);
 			return response;
 		} else {
@@ -67,6 +69,20 @@ var ajaxFetch = (function(urlToAPI) {
 		document.querySelector('.ajax-error-container').classList.remove('hidden');
 		document.querySelector('.ajax-error-container .alert-warning').innerHTML = `<strong>Oh snap!</strong> There was an error. <em>${error}</em>`;
 	};	
+
+	/**
+	 * 
+	 */
+	var showLoadingSpinner = function(){
+		document.querySelector('.ajax-load-indicator-container').classList.remove('hidden');
+	};
+
+	/**
+	 * 
+	 */
+	var hideLoadingSpinner = function(){
+		document.querySelector('.ajax-load-indicator-container').classList.add('hidden');
+	};
 
 	/**
 	 * Post item to API
