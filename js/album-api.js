@@ -32,7 +32,7 @@ var albumApi = (function() {
 			album: title,
 			format: 'json'
 		}; 
-		ajaxFetch.getDataFromApi('http://ws.audioscrobbler.com/2.0/?', ajaxFetch.jsonToURI(requestOptions), albumView.handleSingleAlbumLoaded); 
+		ajaxFetch.getDataFromApi('https://ws.audioscrobbler.com/2.0/?', ajaxFetch.jsonToURI(requestOptions), albumView.handleSingleAlbumLoaded); 
 	};
 
 	// Reveal public pointers to
