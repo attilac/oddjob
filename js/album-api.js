@@ -17,14 +17,21 @@ var albumApi = (function() {
 	/**
 	 * 
 	 */ 
-	var getAlbumsFromApi = function() {
-		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums', '', albumView.handleAlbumLoaded);		
-	};		
+	var getAlbumList = function() {
+		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums', '', albumView.handleAlbumListLoaded);		
+	};	
 
 	/**
 	 * 
 	 */ 
-	var getTracksFromLfmApi	= function(title) {
+	var getAlbumItem = function(albumId) {
+		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums/' + albumId, '', albumView.handleAlbumItemLoaded);		
+	};			
+
+	/**
+	 * 
+	 */ 
+	var getAlbumTracks = function(title) {
 		var requestOptions = {
 			method: 'album.getInfo',
 			api_key: '377eabc9766b8fc2773689da32024f81',
@@ -32,15 +39,16 @@ var albumApi = (function() {
 			album: title,
 			format: 'json'
 		}; 
-		ajaxFetch.getDataFromApi('https://ws.audioscrobbler.com/2.0/?', ajaxFetch.jsonToURI(requestOptions), albumView.handleSingleAlbumLoaded); 
+		ajaxFetch.getDataFromApi('https://ws.audioscrobbler.com/2.0/?', ajaxFetch.jsonToURI(requestOptions), albumView.handleAlbumTracksLoaded); 
 	};
 
 	// Reveal public pointers to
     // private functions and properties
     return {
         init: init(),  
-        getAlbumsFromApi: getAlbumsFromApi,
-        getTracksFromLfmApi: getTracksFromLfmApi   
+        getAlbumList: getAlbumList,
+        getAlbumItem: getAlbumItem,
+        getAlbumTracks: getAlbumTracks   
     };
 
 })();  

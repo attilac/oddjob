@@ -152,6 +152,14 @@ var utils = (function() {
 	};
 
 	/**
+	 *
+	 */
+	var secondsToMinutes = function(value){
+		let seconds = value % 60 < 10 ? '0' + value % 60 : value % 60;
+		return Math.floor(value / 60) + ":" + (seconds ? seconds : '00');
+	};	
+
+	/**
 	* @description Sets divs on the same row to be the same height
 	* 
 	*/	
@@ -205,7 +213,8 @@ var utils = (function() {
         getConcatArray: getConcatArray,
         getObjectPropertyList: getObjectPropertyList,
         columnConform: columnConform,
-        formatDate: formatDate
+        formatDate: formatDate,
+        secondsToMinutes: secondsToMinutes
     };
  
 })();

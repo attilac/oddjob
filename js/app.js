@@ -62,6 +62,7 @@ var view = (function() {
 	    		pageOnHidden(Number(item.dataset.id));
 	    	}
 	    }); 
+	    closeErrorAlert();
 	};
 
 	/**
@@ -91,16 +92,26 @@ var view = (function() {
 	 */ 
 	var audioPageLinkOnClick = function(e){
 		e.preventDefault();
-		albumApi.getAlbumsFromApi();
+		albumApi.getAlbumList();
 	};
 
 	/**
 	 * 
 	 */
-	var displayErrorAlert = function(error){
+	var showErrorAlert = function(error){
 		document.querySelector('.ajax-error-container').classList.remove('hidden');
-		document.querySelector('.ajax-error-container .alert-warning').innerHTML = `<strong>Oh snap!</strong> There was an error. <em>${error}</em>`;
+		document.querySelector('.ajax-error-container .container').innerHTML = alertBox(`<strong>Oh snap!</strong> There was an error when fetching the content. Please try again later. <small><em>${error}</em></small>`);
 	};	
+
+	/**
+	 * 
+	 */
+	var closeErrorAlert = function(){
+		document.querySelector('.ajax-error-container').classList.add('hidden');
+		if(document.querySelector('.ajax-error-container .alert-warning')){
+			document.querySelector('.ajax-error-container .alert-warning').alert('close');
+		}
+	};		
 
 	/**
 	 * 
@@ -114,6 +125,21 @@ var view = (function() {
 	 */
 	var hideLoadingSpinner = function(){
 		document.querySelector('.ajax-load-indicator-container').classList.add('hidden');
+	};	
+
+	/**
+	 * 
+	 */
+	var alertBox = (message, alertClass="alert-warning") =>{
+		console.log('message');
+		return `
+		  <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
+		    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
+		      <span aria-hidden="true">&times;</span>
+		    </button>      
+		    <div class="alert-message">${message}</div>
+		  </div> 
+		`;
 	};		
 
 
@@ -123,7 +149,9 @@ var view = (function() {
 		init: init(),
 		getCurrentPage: getCurrentPage,
 		setCurrentPage: getCurrentPage,
-		displayErrorAlert: displayErrorAlert,
+		showErrorAlert: showErrorAlert,
+		closeErrorAlert: closeErrorAlert,
+		alertBox: alertBox,
 		showLoadingSpinner: showLoadingSpinner,
 		hideLoadingSpinner: hideLoadingSpinner
     };	

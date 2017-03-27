@@ -10,7 +10,8 @@ var videoView = (function() {
 
 		
 	/**
-	 * 
+	 * Handler on load YouTube playlist
+	 * @param {Object} json - json data
 	 */ 
 	var handleYtPlaylistLoaded = function(json) {
 		//console.log(json.items);
@@ -30,7 +31,7 @@ var videoView = (function() {
 			}
 			document.getElementById('videoInfo').innerHTML = videoTemplate.meta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), playlistItems[0].snippet.resourceId.videoId));      		
 	    } else {
-	    	view.displayErrorAlert('Something went wrong. No videos found');
+	    	view.showErrorAlert('Sorry, something went wrong when fetching videos. Please try again later');
 	    }
 	};
 

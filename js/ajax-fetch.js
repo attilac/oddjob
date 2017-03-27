@@ -90,9 +90,9 @@ var ajaxFetch = (function(urlToAPI) {
 	 * Post item to API
 	 * @param {Object} data - a JSON Object
 	 */
-	var postItemToApi = function(data){
+	var postItemToApi = function(dataUrl, data){
 		//console.log(typeof(data));
-		fetch(getApiUrl(),
+		fetch(dataUrl,
 		{
 			method: 'POST',
 			body: JSON.stringify(data),
