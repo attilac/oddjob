@@ -20,27 +20,29 @@ var ajaxFetch = (function(urlToAPI) {
 	 * @param {function} callback - the callback function
 	 */
 	var getDataFromApi = function(dataUrl = '', queryStrings = '', callback = ''){
-		showLoadingSpinner();
+		view.showLoadingSpinner();
 		fetch(dataUrl + queryStrings)
-		  .then(checkStatus)
+		  .then(status)
 		  .then(parseJSON)
 		  .then(function(result) {
-		  	console.log('JSON response: ' + result);
+		  	console.log('Request succeeded with JSON response: ' + result);
 		    if(callback){
-		    	callback(result);
+				callback(result);
+				view.hideLoadingSpinner();
 		    }
 		  })
 		  .catch(function(error) {
-		    console.log('request failed', error);
-		    displayErrorMessage(error);
+		    console.log('Request failed', error);
+		    getErrorMessage(error);
+		    view.hideLoadingSpinner();
 		  });	
-		  hideLoadingSpinner();
 	};
 
 	/**
 	 * Fetch error handling
 	 * @param {Object} response - the response object
 	 */
+	 /*
 	var checkStatus = function(response) {
 		//console.log(typeof(response));
 		console.log('GET status: ' + response.status);
@@ -54,6 +56,21 @@ var ajaxFetch = (function(urlToAPI) {
 			throw error;
 		}
 	};	
+	*/
+
+	/**
+	 * Fetch error handling
+	 * @param {Object} response - the response object
+	 */
+	var status = function(response) {  
+	  if (response.status >= 200 && response.status < 300) {  
+		console.log(`Response url: ${response.url}`);
+		console.log(response);	  	
+	    return Promise.resolve(response);  
+	  } else {  
+	    return Promise.reject(new Error(response.statusText));  
+	  }  
+	};	
 
 	/**
 	 * 
@@ -65,24 +82,9 @@ var ajaxFetch = (function(urlToAPI) {
 	/**
 	 * 
 	 */
-	var displayErrorMessage = function(error){
-		document.querySelector('.ajax-error-container').classList.remove('hidden');
-		document.querySelector('.ajax-error-container .alert-warning').innerHTML = `<strong>Oh snap!</strong> There was an error. <em>${error}</em>`;
+	var getErrorMessage = function(error){
+		return error;
 	};	
-
-	/**
-	 * 
-	 */
-	var showLoadingSpinner = function(){
-		document.querySelector('.ajax-load-indicator-container').classList.remove('hidden');
-	};
-
-	/**
-	 * 
-	 */
-	var hideLoadingSpinner = function(){
-		document.querySelector('.ajax-load-indicator-container').classList.add('hidden');
-	};
 
 	/**
 	 * Post item to API

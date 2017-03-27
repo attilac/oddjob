@@ -21,18 +21,17 @@ var videoView = (function() {
 	    var playlistItems = json.items;
 	    if (playlistItems) {
       		document.getElementById('playlistContainer').innerHTML = videoTemplate.playlist(json);
+      		addPlaylistEventHandlers();
+
+			if(! document.querySelector('iframe#player') || ''){
+				videoApi.createYTPlayer();
+			}else{
+				videoApi.cuePlaylist('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', 'playlist', playlistItems[0].snippet.position);
+			}
+			document.getElementById('videoInfo').innerHTML = videoTemplate.meta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), playlistItems[0].snippet.resourceId.videoId));      		
 	    } else {
-    		document.getElementById('playlistContainer').innerHTML.html('Sorry you have no uploaded videos');
+	    	view.displayErrorAlert('Something went wrong. No videos found');
 	    }
-		addPlaylistEventHandlers();
-
-		if(! document.querySelector('iframe#player') || ''){
-			videoApi.createYTPlayer();
-		}else{
-			videoApi.cuePlaylist('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', 'playlist', playlistItems[0].snippet.position);
-		}
-
-		document.getElementById('videoInfo').innerHTML = videoTemplate.meta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), playlistItems[0].snippet.resourceId.videoId));
 	};
 
 	/**
@@ -94,7 +93,7 @@ var videoView = (function() {
 	 */ 	
 	var nextPage = function(e) {
 		e.preventDefault();
-		videoApi.getPlaylistFromAPI('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', videoApi.getNextPageToken());
+		videoApi.getPlaylistFromApi('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', videoApi.getNextPageToken());
 		_scrollToPlayer();
 	};
 
@@ -103,7 +102,7 @@ var videoView = (function() {
 	 */ 	
 	var previousPage = function(e) {
 		e.preventDefault();
-		videoApi.getPlaylistFromAPI('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', videoApi.getPrevPageToken());
+		videoApi.getPlaylistFromApi('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', videoApi.getPrevPageToken());
 		_scrollToPlayer();
 	};	
 

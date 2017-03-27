@@ -26,6 +26,8 @@ var albumView = (function() {
 	var handleSingleAlbumLoaded = function(response){
 		let errorMessage = response.error || '' ? response.message : '';
 		console.log(errorMessage);
+		if(errorMessage || '') view.displayErrorAlert(errorMessage);
+
 		let album = response.album || '' ? response.album: '';
 		console.log(album);
 		console.log(utils.getObjectPropertyList(album.tracks.track, 'name'));

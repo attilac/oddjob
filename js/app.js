@@ -72,6 +72,10 @@ var view = (function() {
 			console.log('Remove Video');
 			videoApi.removePlayer();
 		}
+		if(pageId === 0){
+			console.log('Remove Albums');
+			document.getElementById('albumContainer').innerHTML = '';
+		}		
 	};	
 
 	/**
@@ -90,13 +94,38 @@ var view = (function() {
 		albumApi.getAlbumsFromApi();
 	};
 
+	/**
+	 * 
+	 */
+	var displayErrorAlert = function(error){
+		document.querySelector('.ajax-error-container').classList.remove('hidden');
+		document.querySelector('.ajax-error-container .alert-warning').innerHTML = `<strong>Oh snap!</strong> There was an error. <em>${error}</em>`;
+	};	
+
+	/**
+	 * 
+	 */
+	var showLoadingSpinner = function(){
+		document.querySelector('.ajax-load-indicator-container').classList.remove('hidden');
+	};
+
+	/**
+	 * 
+	 */
+	var hideLoadingSpinner = function(){
+		document.querySelector('.ajax-load-indicator-container').classList.add('hidden');
+	};		
+
 
     // Reveal public pointers to
     // private functions and properties
     return {
 		init: init(),
 		getCurrentPage: getCurrentPage,
-		setCurrentPage: getCurrentPage
+		setCurrentPage: getCurrentPage,
+		displayErrorAlert: displayErrorAlert,
+		showLoadingSpinner: showLoadingSpinner,
+		hideLoadingSpinner: hideLoadingSpinner
     };	
 })();
 
