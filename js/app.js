@@ -38,6 +38,7 @@ var view = (function() {
 		.forEach(function(link){
 			link.addEventListener('click', pageLinkOnClick, false);
 		});
+		document.getElementById('homePageLink').addEventListener('click', pageLinkOnClick, 'false');
 
 		document.getElementById('videoPageLink').addEventListener('click', videoPageLinkOnClick, 'false');
 		document.getElementById('audioPageLink').addEventListener('click', audioPageLinkOnClick, 'false');
@@ -52,7 +53,7 @@ var view = (function() {
 		setCurrentPage(this.dataset.id);
 		document.querySelector(this.dataset.target).classList.remove('hidden');
 
-	    Array.prototype.slice.call(document.querySelectorAll('.navbar .nav-link'))
+	    Array.prototype.slice.call(document.querySelectorAll('.navbar .page-nav-link'))
 	    .forEach(function(item) {
 	    	if(getCurrentPage() === Number(item.dataset.id)){
 	    		item.parentNode.classList.add('active'); 
@@ -62,6 +63,8 @@ var view = (function() {
 	    		pageOnHidden(Number(item.dataset.id));
 	    	}
 	    }); 
+
+
 	    closeErrorAlert();
 	};
 
