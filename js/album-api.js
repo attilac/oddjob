@@ -18,7 +18,7 @@ var albumApi = (function() {
 	 * 
 	 */ 
 	var getAlbumList = function() {
-		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums', '', albumView.handleAlbumListLoaded);		
+		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums/', '', albumView.handleAlbumListLoaded);		
 	};	
 
 	/**
@@ -42,13 +42,21 @@ var albumApi = (function() {
 		ajaxFetch.getDataFromApi('https://ws.audioscrobbler.com/2.0/?', ajaxFetch.jsonToURI(requestOptions), albumView.handleAlbumTracksLoaded); 
 	};
 
+	/**
+	 * 
+	 */ 
+	var getPurchaseLinks = function(albumId){
+		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums/' + albumId, '', albumView.handlePurchaseLinksLoaded);
+	};
+
 	// Reveal public pointers to
     // private functions and properties
     return {
         init: init(),  
         getAlbumList: getAlbumList,
         getAlbumItem: getAlbumItem,
-        getAlbumTracks: getAlbumTracks   
+        getAlbumTracks: getAlbumTracks,
+        getPurchaseLinks: getPurchaseLinks   
     };
 
 })();  

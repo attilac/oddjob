@@ -108,7 +108,7 @@ var view = (function() {
 	 */
 	var closeErrorAlert = function(){
 		document.querySelector('.ajax-error-container').classList.add('hidden');
-		if(document.querySelector('.ajax-error-container .alert-warning')){
+		if(document.querySelector('.ajax-error-container .alert-warning') || ''){
 			document.querySelector('.ajax-error-container .alert-warning').alert('close');
 		}
 	};		
@@ -131,7 +131,7 @@ var view = (function() {
 	 * 
 	 */
 	var alertBox = (message, alertClass="alert-warning") =>{
-		console.log('message');
+		//console.log('message');
 		return `
 		  <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
 		    <button type="button" class="close" data-dismiss="alert" aria-label="Close">

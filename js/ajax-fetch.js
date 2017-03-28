@@ -25,7 +25,8 @@ var ajaxFetch = (function(urlToAPI) {
 		  .then(status)
 		  .then(parseJSON)
 		  .then(function(result) {
-		  	console.log('Request succeeded with JSON response: ' + result);
+		  	console.log('Request succeeded with JSON response: ');
+		  	console.log(result);
 		    if(callback){
 				callback(result);
 				view.hideLoadingSpinner();
@@ -34,6 +35,7 @@ var ajaxFetch = (function(urlToAPI) {
 		  .catch(function(error) {
 		    console.log('Request failed', error);
 		    getErrorMessage(error);
+			view.showErrorAlert(error);			    
 		    view.hideLoadingSpinner();
 		  });	
 	};
@@ -65,9 +67,11 @@ var ajaxFetch = (function(urlToAPI) {
 	var status = function(response) {  
 	  if (response.status >= 200 && response.status < 300) {  
 		console.log(`Response url: ${response.url}`);
-		console.log(response);	  	
+		console.log(`Response status: ${response.status}`);
+		console.log(`Response statusText: ${response.statusText}`);
+		//console.log(response);	  	
 	    return Promise.resolve(response);  
-	  } else {  
+	  } else {    	
 	    return Promise.reject(new Error(response.statusText));  
 	  }  
 	};	

@@ -18,30 +18,12 @@ var albumView = (function() {
 		.forEach(function(link){
 			link.addEventListener('click', albumItemOnClick, false);
 		});
+
+		Array.prototype.slice.call(document.querySelectorAll('.purchase-link'))
+		.forEach(function(link){
+			link.addEventListener('click', purchaseLinkOnClick, false);
+		});		
 	};
-
-	/**
-	 * 
-	 */ 
-	var handleAlbumItemLoaded = function(response){
-		//console.log(response);
-		document.getElementById('albumContainer').innerHTML = albumTemplate.albumItem(response);		
-		albumApi.getAlbumTracks(response.title);
-	};
-
-	/**
-	 * 
-	 */ 
-	var handleAlbumTracksLoaded = function(response){
-		let errorMessage = response.error || '' ? response.message : '';
-		console.log(errorMessage);
-		if(errorMessage || '') view.showErrorAlert(errorMessage);
-
-		let album = response.album || '' ? response.album: '';
-		console.log(album);
-		console.log(utils.getObjectPropertyList(album.tracks.track, 'name'));
-		document.querySelector('#albumContainer .tracks-container').innerHTML = albumTemplate.trackList(album.tracks.track);
-	};	
 
 	/**
 	 * 
@@ -52,11 +34,54 @@ var albumView = (function() {
 		albumApi.getAlbumItem(this.parentNode.dataset.id);
 	};
 
+	/**
+	 * 
+	 */ 
+	var handleAlbumItemLoaded = function(response){	
+		//console.log(response);
+		document.getElementById('albumContainer').innerHTML = albumTemplate.albumItem(response);		
+		albumApi.getAlbumTracks(response.title);
+	};
+
+	/**
+	 * 
+	 */ 
+	var handleAlbumTracksLoaded = function(response){
+		/*
+		let errorMessage = response.error || '' ? response.message : '';
+		console.log(errorMessage);
+		if(errorMessage || '') view.showErrorAlert(errorMessage);
+		*/
+
+		let album = response.album || '' ? response.album: '';
+		//console.log(album);
+		document.querySelector('#albumContainer .tracks-container').innerHTML = albumTemplate.trackList(album.tracks.track);
+	};	
+
+	/**
+	 * 
+	 */
+	var purchaseLinkOnClick = function(e){
+		e.preventDefault();
+		//console.log(this.dataset.id);
+		albumApi.getPurchaseLinks(this.dataset.id);
+	};
+
+	/**
+	 * 
+	 */ 
+	var handlePurchaseLinksLoaded = function(response){
+		console.log(response);
+		document.querySelector('#purchaseModal .modal-body').innerHTML = albumTemplate.purchaseContent(response);
+		$('#purchaseModal').modal('show');		
+	};	
+
     // Reveal public pointers to
     // private functions and properties
     return {
 		handleAlbumListLoaded: handleAlbumListLoaded,
 		handleAlbumItemLoaded: handleAlbumItemLoaded,
-		handleAlbumTracksLoaded: handleAlbumTracksLoaded
+		handleAlbumTracksLoaded: handleAlbumTracksLoaded,
+		handlePurchaseLinksLoaded: handlePurchaseLinksLoaded
     };	
 })();	 

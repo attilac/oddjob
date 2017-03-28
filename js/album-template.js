@@ -38,13 +38,16 @@ var albumTemplate = (function() {
 	 */
 	var listItem = ({ albumItem, cover, info}) => {
   		return `
-		 	<div class="album-list-item col-sm-6 col-lg-4 mb-2" data-id="${albumItem.id}" data-title="${albumItem.title}"> 
+		 	<div class="album-list-item col-sm-6 col-lg-4 mb-1" data-id="${albumItem.id}" data-title="${albumItem.title}"> 
 		 		<a class="album-detail-link" href="#" title="Oddjob - ${albumItem.title}">
 			 		<div class="card">
 							${cover}
 							${info}			 	  	
 			 	  	</div>
-				</a>			 	  	
+				</a>
+				<a class="purchase-link d-block p-3" href="#" title="Purchase - ${albumItem.title}"" data-id="${albumItem.id}">
+					<i class="fa fa-gift"></i> Purchase
+				</a>				 	  	
 			</div>
 		`;
 	};
@@ -85,7 +88,7 @@ var albumTemplate = (function() {
 	 * @return 
 	 */   
 	var albumItem = (albumData) => {
-		console.log(albumData);
+		//console.log(albumData);
 		return `
 			<div class="album-detail row data-id="${albumData.id}">
 				<div class="col-sm-10 push-sm-1 col-lg-8 push-lg-2 mb-5">
@@ -139,7 +142,7 @@ var albumTemplate = (function() {
 	 * @return 
 	 */
 	var trackListItem = ({ track, index }) => {
-		console.log(track);
+		//console.log(track);
 		let duration = track.duration > 0 || '' ? utils.secondsToMinutes(track.duration): '';
   		return `
 		 	<li class="track-list-item list-group-item d-flex justify-content-start"> 	
@@ -150,11 +153,64 @@ var albumTemplate = (function() {
 		`;
 	};	
 
+	/**
+	 * Template
+	 * @return 
+	 */
+	var purchaseContent = (album) => {
+		console.log(album);
+		return `
+			<div class="purchase-container">
+				<div class="row">
+					<div class="col-8 push-2">
+					${listCover(album)}
+					</div>	
+				</div>	
+				<h3 class="pt-5 pb-3 album-title h5">
+					${album.title} 
+					<small class="year">${album.label} ${album.year}</small>
+				</h3>
+			 	${purchaseList(album.purchase)}
+			</div>
+		`;
+	};			
+
+	/**
+	 * Template
+	 * @return 
+	 */
+	var purchaseList = (purchase) => {
+		console.log(purchase);
+		return `
+			<ul class="purchase-list list-group">
+				 ${purchase.map((item) => purchaseItem({
+				  item
+				})).join('')}  			
+			</ul>
+		`;
+	};
+
+	/**
+	 * Template
+	 * @param 
+	 * @return 
+	 */
+	var purchaseItem = ({item}) => {
+  		return `
+		 	<a class="purchase-list-item list-group-item" href="${item.url}" target="_blank">
+		 		<i class="fa fa-cloud-download mr-3"></i> 
+		 		${item.name}
+		 	</a>
+		`;
+	};	
+
 	// Reveal public pointers to
     // private functions and properties
     return {
         list: list,
         albumItem: albumItem,
-        trackList: trackList	
+        trackList: trackList,
+        purchaseList: purchaseList,
+        purchaseContent: purchaseContent	
     };	
 })();	
