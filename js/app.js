@@ -140,7 +140,27 @@ var view = (function() {
 		    <div class="alert-message">${message}</div>
 		  </div> 
 		`;
-	};		
+	};	
+
+	/**
+	 * 
+	 */
+	var delayFadeInContent = function(className) {
+	  	//window.setTimeout(FadeInAlbums, 200);
+		window.setTimeout(function() {
+		    fadeInContent(className);
+		}, 200);	  
+	};
+
+	/**
+	 * 
+	 */	
+	 var fadeInContent = function(className){
+		Array.prototype.slice.call(document.querySelectorAll(className))
+		.forEach(function(album){
+			album.classList.add('show');
+		});	
+	};			
 
 
     // Reveal public pointers to
@@ -153,7 +173,8 @@ var view = (function() {
 		closeErrorAlert: closeErrorAlert,
 		alertBox: alertBox,
 		showLoadingSpinner: showLoadingSpinner,
-		hideLoadingSpinner: hideLoadingSpinner
+		hideLoadingSpinner: hideLoadingSpinner,
+		delayFadeInContent: delayFadeInContent
     };	
 })();
 

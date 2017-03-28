@@ -33,6 +33,8 @@ var videoView = (function() {
 	    } else {
 	    	view.showErrorAlert('Sorry, something went wrong when fetching videos. Please try again later');
 	    }
+
+	    view.delayFadeInContent('.video-wrapper');
 	};
 
 	/**

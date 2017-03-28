@@ -90,7 +90,7 @@ var albumTemplate = (function() {
 	var albumItem = (albumData) => {
 		//console.log(albumData);
 		return `
-			<div class="album-detail row" data-id="${albumData.id}">
+			<div class="album-detail row fade" data-id="${albumData.id}">
 				<div class="col-sm-10 push-sm-1 col-lg-8 push-lg-2 mb-5">
 			 		<div class="card">
 							${listCover(albumData)}
@@ -160,18 +160,27 @@ var albumTemplate = (function() {
 	var purchaseContent = (album) => {
 		//console.log(album);
 		return `
-			<div class="purchase-container">
-				<div class="row">
-					<div class="col-8 push-2">
-					${listCover(album)}
+	      <div class="modal-content">
+	        <div class="modal-header">
+	          <h5 class="modal-title album-title h5">
+				 ${album.title} 
+				<small class="year">${album.label} ${album.year}</small>
+	          </h5>
+	          <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+	            <span aria-hidden="true">&times;</span>
+	          </button>
+	        </div>
+	        <div class="modal-body">
+				<div class="purchase-container">
+					<div class="row">
+						<div class="col-8 push-2 pb-3">
+						${listCover(album)}
+						</div>	
 					</div>	
-				</div>	
-				<h3 class="pt-5 pb-3 album-title h5">
-					${album.title} 
-					<small class="year">${album.label} ${album.year}</small>
-				</h3>
-			 	${purchaseList(album.purchase)}
-			</div>
+				 	${purchaseList(album.purchase)}
+				</div>        
+	        </div>
+	      </div>		
 		`;
 	};			
 

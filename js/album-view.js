@@ -25,26 +25,9 @@ var albumView = (function() {
 			link.addEventListener('click', purchaseLinkOnClick, false);
 		});
 
-		delayShowAlbums();
+		view.delayFadeInContent('.album-list-item');
 		
 	};
-
-	/**
-	 * 
-	 */
-	var delayShowAlbums = function() {
-	  let timeoutID = window.setTimeout(showAlbums, 200);
-	};
-
-	/**
-	 * 
-	 */	
-	 var showAlbums = function(){
-		Array.prototype.slice.call(document.querySelectorAll('.album-list-item'))
-		.forEach(function(album){
-			album.classList.add('show');
-		});	
-	};	
 
 	/**
 	 * 
@@ -62,6 +45,7 @@ var albumView = (function() {
 		//console.log(response);
 		document.getElementById('albumContainer').innerHTML = albumTemplate.albumItem(response);		
 		albumApi.getAlbumTracks(response.title);
+		view.delayFadeInContent('.album-detail');
 	};
 
 	/**
@@ -93,7 +77,7 @@ var albumView = (function() {
 	 */ 
 	var handlePurchaseLinksLoaded = function(response){
 		//console.log(response);
-		document.querySelector('#purchaseModal .modal-body').innerHTML = albumTemplate.purchaseContent(response);
+		document.querySelector('#purchaseModal .modal-dialog').innerHTML = albumTemplate.purchaseContent(response);
 		$('#purchaseModal').modal('show');		
 	};	
 
