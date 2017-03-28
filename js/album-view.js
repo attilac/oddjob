@@ -14,6 +14,7 @@ var albumView = (function() {
 	var handleAlbumListLoaded = function(json){
 		//console.log(utils.sortObjectsByKey(json, 'year', 'DESC'));
 		document.getElementById('albumContainer').innerHTML = albumTemplate.list(utils.sortObjectsByKey(json, 'year', 'DESC'));
+
 		Array.prototype.slice.call(document.querySelectorAll('.album-detail-link'))
 		.forEach(function(link){
 			link.addEventListener('click', albumItemOnClick, false);
@@ -22,8 +23,28 @@ var albumView = (function() {
 		Array.prototype.slice.call(document.querySelectorAll('.purchase-link'))
 		.forEach(function(link){
 			link.addEventListener('click', purchaseLinkOnClick, false);
-		});		
+		});
+
+		delayShowAlbums();
+		
 	};
+
+	/**
+	 * 
+	 */
+	var delayShowAlbums = function() {
+	  let timeoutID = window.setTimeout(showAlbums, 200);
+	};
+
+	/**
+	 * 
+	 */	
+	 var showAlbums = function(){
+		Array.prototype.slice.call(document.querySelectorAll('.album-list-item'))
+		.forEach(function(album){
+			album.classList.add('show');
+		});	
+	};	
 
 	/**
 	 * 
@@ -71,7 +92,7 @@ var albumView = (function() {
 	 * 
 	 */ 
 	var handlePurchaseLinksLoaded = function(response){
-		console.log(response);
+		//console.log(response);
 		document.querySelector('#purchaseModal .modal-body').innerHTML = albumTemplate.purchaseContent(response);
 		$('#purchaseModal').modal('show');		
 	};	

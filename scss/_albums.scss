@@ -1,4 +1,9 @@
 .album-list{
+
+	.album-list-item {
+		transition: opacity 0.6s ease;
+	}
+
 	.album-detail-link{
 		display: block;
 		color: $body-color;

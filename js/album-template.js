@@ -38,7 +38,7 @@ var albumTemplate = (function() {
 	 */
 	var listItem = ({ albumItem, cover, info}) => {
   		return `
-		 	<div class="album-list-item col-sm-6 col-lg-4 mb-1" data-id="${albumItem.id}" data-title="${albumItem.title}"> 
+		 	<div class="album-list-item col-sm-6 col-lg-4 mb-1 fade" data-id="${albumItem.id}" data-title="${albumItem.title}"> 
 		 		<a class="album-detail-link" href="#" title="Oddjob - ${albumItem.title}">
 			 		<div class="card">
 							${cover}
@@ -90,7 +90,7 @@ var albumTemplate = (function() {
 	var albumItem = (albumData) => {
 		//console.log(albumData);
 		return `
-			<div class="album-detail row data-id="${albumData.id}">
+			<div class="album-detail row" data-id="${albumData.id}">
 				<div class="col-sm-10 push-sm-1 col-lg-8 push-lg-2 mb-5">
 			 		<div class="card">
 							${listCover(albumData)}
@@ -158,7 +158,7 @@ var albumTemplate = (function() {
 	 * @return 
 	 */
 	var purchaseContent = (album) => {
-		console.log(album);
+		//console.log(album);
 		return `
 			<div class="purchase-container">
 				<div class="row">
@@ -180,7 +180,7 @@ var albumTemplate = (function() {
 	 * @return 
 	 */
 	var purchaseList = (purchase) => {
-		console.log(purchase);
+		//console.log(purchase);
 		return `
 			<ul class="purchase-list list-group">
 				 ${purchase.map((item) => purchaseItem({

@@ -6252,6 +6252,9 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 .pagination {
   font-size: 0.85rem; }
 
+.album-list .album-list-item {
+  transition: opacity 0.6s ease; }
+
 .album-list .album-detail-link {
   display: block;
   color: #333333;
