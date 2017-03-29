@@ -1,6 +1,7 @@
 # AJAX Assignment - Open APIs
 
 ## Oddjob
+Del av hemsida till bandet Oddjob för att presentera deras album och visa videos.
 
 Attila Cederbygd
 
