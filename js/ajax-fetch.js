@@ -1,17 +1,12 @@
 /*jshint esversion: 6 */
 console.log('---AJAX Fetch');
 console.log( '-----Revealing Module Pattern-----');
-/*-------------------------------------------------------------------------
-			AJAX functions					
---------------------------------------------------------------------------*/
 
 /**
- * Revealing Module Pattern
+ * Module with AJAX functions for fetching data. Uses fetch
  * 
  */
-var ajaxFetch = (function(urlToAPI) {
-
-	var dataUrl = urlToAPI;
+var ajaxFetch = (function() {
 
 	/**
 	 * Fetch data from API
@@ -33,32 +28,11 @@ var ajaxFetch = (function(urlToAPI) {
 		    }
 		  })
 		  .catch(function(error) {
-		    console.log('Request failed', error);
 		    getErrorMessage(error);
 			view.showErrorAlert(error);			    
 		    view.hideLoadingSpinner();
 		  });	
 	};
-
-	/**
-	 * Fetch error handling
-	 * @param {Object} response - the response object
-	 */
-	 /*
-	var checkStatus = function(response) {
-		//console.log(typeof(response));
-		console.log('GET status: ' + response.status);
-		if (response.status >= 200 && response.status < 300) {
-			console.log(`request url: ${response.url}`);
-			console.log(response);
-			return response;
-		} else {
-			var error = new Error(response.statusText);
-			error.response = response;
-			throw error;
-		}
-	};	
-	*/
 
 	/**
 	 * Fetch error handling
@@ -77,21 +51,25 @@ var ajaxFetch = (function(urlToAPI) {
 	};	
 
 	/**
-	 * 
+	 * Returns parsed JSON
+	 * @param {Object} response - the response object
 	 */
 	var parseJSON = function(response) {
 		return response.json();
 	};	
 
 	/**
-	 * 
+	 * Returns error object
+	 * @param {Object} error - the error object
 	 */
 	var getErrorMessage = function(error){
+		console.log('Request failed', error);
 		return error;
 	};	
 
 	/**
 	 * Post item to API
+	 * @param {String} dataUrl - url to API
 	 * @param {Object} data - a JSON Object
 	 */
 	var postItemToApi = function(dataUrl, data){
@@ -158,12 +136,12 @@ var ajaxFetch = (function(urlToAPI) {
 	};
 
 	/**
-	 * 
-	 * 
+	 * Returns querystrings from an objects properties
+	 * @return {String} - URI string
 	 */
-	var jsonToURI = function(json){ 
-		return Object.keys(json).map(function(key){ 
-		  return encodeURIComponent(key) + '=' + encodeURIComponent(json[key]); 
+	var jsonToURI = function(object){ 
+		return Object.keys(object).map(function(key){ 
+		  return encodeURIComponent(key) + '=' + encodeURIComponent(object[key]); 
 		}).join('&');		
 	};
 

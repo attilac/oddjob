@@ -8,7 +8,12 @@ console.log('---Video View');
  */
 var videoView = (function() {
 
-		
+	_playlistID = 'PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ';
+
+	var getPlaylistId = function(){
+		return _playlistID;
+	};		
+
 	/**
 	 * Handler on load YouTube playlist
 	 * @param {Object} json - json data
@@ -27,7 +32,7 @@ var videoView = (function() {
 			if(! document.querySelector('iframe#player') || ''){
 				videoApi.createYTPlayer();
 			}else{
-				videoApi.cuePlaylist('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', 'playlist', playlistItems[0].snippet.position);
+				videoApi.cuePlaylist(getPlaylistId(), 'playlist', playlistItems[0].snippet.position);
 			}
 			document.getElementById('videoInfo').innerHTML = videoTemplate.meta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), playlistItems[0].snippet.resourceId.videoId));      		
 	    } else {
@@ -35,10 +40,11 @@ var videoView = (function() {
 	    }
 
 	    view.delayFadeInContent('.video-wrapper');
+	    _scrollToPlayer();
 	};
 
 	/**
-	 * 
+	 * Add eventhandlers for buttons
 	 */ 
 	var addPlaylistEventHandlers = function(){
 	    document.querySelector('#prevButton').addEventListener('click', previousPage, 'false');
@@ -57,18 +63,22 @@ var videoView = (function() {
 	};
 
 	/**
-	 * 
+	 * Handler for video links
+	 * {Event} e - the event that was triggered
 	 */ 
 	var videoTitleLinkOnClick = function(e){
 		e.preventDefault();
 		let videoId = this.parentNode.parentNode.parentNode.parentNode.dataset.id;
-		videoApi.cueVideoById(videoId);
+		//videoApi.cueVideoById(videoId);
+		//console.log(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), videoId).snippet.position);
+		videoApi.cuePlaylist(getPlaylistId(), 'playlist', videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), videoId).snippet.position);
 		document.getElementById('videoInfo').innerHTML = videoTemplate.meta(videoApi.getCurrentVideo(videoApi.getCurrentPlaylist(), videoId));
 		_scrollToPlayer();
 	};	
 
 	/**
-	 * 
+	 * Handler for playlist item on mouseenter
+	 * {Event} e - the event that was triggered
 	 */ 
 	var playListItemOnMouseEnter = function(e){
 		e.preventDefault();
@@ -76,7 +86,8 @@ var videoView = (function() {
 	};
 
 	/**
-	 * 
+	 * Handler for playlist item on mouseleave
+	 * {Event} e - the event that was triggered
 	 */ 
 	var playListItemOnMouseLeave = function(e){
 		e.preventDefault();
@@ -84,7 +95,8 @@ var videoView = (function() {
 	};	
 
 	/**
-	 * 
+	 * Handler for playlist item on click
+	 * {Event} e - the event that was triggered
 	 */
 	var playListItemOnClick = function(e){
 		e.preventDefault();
@@ -93,20 +105,20 @@ var videoView = (function() {
 
 	/**
 	 * Retrieve the next page of videos in the playlist.
+	 * {Event} e - the event that was triggered
 	 */ 	
 	var nextPage = function(e) {
 		e.preventDefault();
-		videoApi.getPlaylistFromApi('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', videoApi.getNextPageToken());
-		_scrollToPlayer();
+		videoApi.getPlaylistFromApi(getPlaylistId(), videoApi.getNextPageToken());
 	};
 
 	/**
 	 * Retrieve the previous page of videos in the playlist.
+
 	 */ 	
 	var previousPage = function(e) {
 		e.preventDefault();
-		videoApi.getPlaylistFromApi('PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', videoApi.getPrevPageToken());
-		_scrollToPlayer();
+		videoApi.getPlaylistFromApi(getPlaylistId(), videoApi.getPrevPageToken());
 	};	
 
 	/**
@@ -119,6 +131,7 @@ var videoView = (function() {
     // Reveal public pointers to
     // private functions and properties
     return {
-		handleYtPlaylistLoaded: handleYtPlaylistLoaded
+		handleYtPlaylistLoaded: handleYtPlaylistLoaded,
+		getPlaylistId: getPlaylistId
     };	
 })();	

@@ -9,7 +9,8 @@ console.log('---Album View');
 var albumView = (function() {
 		
 	/**
-	 * 
+	 * Handler for album on loaded. Appends template and assigns event handlers
+	 * {Object} json - object with album data
 	 */ 
 	var handleAlbumListLoaded = function(json){
 		//console.log(utils.sortObjectsByKey(json, 'year', 'DESC'));
@@ -30,7 +31,8 @@ var albumView = (function() {
 	};
 
 	/**
-	 * 
+	 * Click handler for album. Trigger getAlbumItem from albumApi
+	 * {Event} e - the event
 	 */
 	var albumItemOnClick = function(e){
 		e.preventDefault();
@@ -39,7 +41,8 @@ var albumView = (function() {
 	};
 
 	/**
-	 * 
+	 * Handler for album detail on loaded. Appends template and triggers getAlbumTracks from albumApi
+	 * {Object} response - object with album data
 	 */ 
 	var handleAlbumItemLoaded = function(response){	
 		//console.log(response);
@@ -49,22 +52,18 @@ var albumView = (function() {
 	};
 
 	/**
-	 * 
+	 * Handler for album tracks on loaded. Appends template.
+	 * {Object} response - object with album data
 	 */ 
 	var handleAlbumTracksLoaded = function(response){
-		/*
-		let errorMessage = response.error || '' ? response.message : '';
-		console.log(errorMessage);
-		if(errorMessage || '') view.showErrorAlert(errorMessage);
-		*/
-
 		let album = response.album || '' ? response.album: '';
 		//console.log(album);
 		document.querySelector('#albumContainer .tracks-container').innerHTML = albumTemplate.trackList(album.tracks.track);
 	};	
 
 	/**
-	 * 
+	 * Handler for album buy-links
+	 * {Event} e - the event that was triggered
 	 */
 	var purchaseLinkOnClick = function(e){
 		e.preventDefault();
@@ -73,7 +72,8 @@ var albumView = (function() {
 	};
 
 	/**
-	 * 
+	  * Handler for album buy-links on loaded. Appends template to modal and opens it.
+	  * {Object} response - object with album buy-links
 	 */ 
 	var handlePurchaseLinksLoaded = function(response){
 		//console.log(response);

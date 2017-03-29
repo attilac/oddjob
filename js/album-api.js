@@ -1,7 +1,7 @@
 /*jshint esversion: 6 */
 
 /**
- * Album page
+ * Functions for calling APIs thru ajaxFetch module
  * 
  */
 var albumApi = (function() {
@@ -15,21 +15,21 @@ var albumApi = (function() {
 	};
 
 	/**
-	 * 
+	 * Get list of albums from API
 	 */ 
 	var getAlbumList = function() {
 		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums/', '', albumView.handleAlbumListLoaded);		
 	};	
 
 	/**
-	 * 
+	 * Get album from API 
 	 */ 
 	var getAlbumItem = function(albumId) {
 		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums/' + albumId, '', albumView.handleAlbumItemLoaded);		
 	};			
 
 	/**
-	 * 
+	 * Get album tracks from API
 	 */ 
 	var getAlbumTracks = function(title) {
 		var requestOptions = {

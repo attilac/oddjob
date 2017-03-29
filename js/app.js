@@ -1,5 +1,5 @@
 /*jshint esversion: 6 */
-console.log('---App');
+console.log('---View');
 
 /**
  * Revealing Module Pattern
@@ -74,6 +74,9 @@ var view = (function() {
 	var pageOnHidden = function(pageId){
 		if(pageId === 1 && document.querySelector('iframe#player') || ''){
 			console.log('Remove Video');
+			//document.getElementById('player').innerHTML = '';
+			document.getElementById('playlistContainer').innerHTML = '';
+			document.getElementById('videoInfo').innerHTML = '';
 			videoApi.removePlayer();
 		}
 		if(pageId === 0){

@@ -13,28 +13,33 @@ var videoApi = (function() {
 	var _prevPageToken = 0;
 
 	/**
-	 * 
+	 * Init function. Fetch and insert api script asynch from youtube
 	 */ 
 	var init = function(){
 		_getYoutubeApiScript();			
 	};
 
 	/**
-	 * 
+	 * Set the current playlist object for reference
+	 * {Object} json - object with playlist items
 	 */
 	var setCurrentPlaylist = function(json){
 		_currentPlaylist = json;
 	};
 
 	/**
-	 * 
+	 * Get the current playlist object
+	 * @return {Object} _currentPlaylist
 	 */
 	var getCurrentPlaylist = function(){
 		return _currentPlaylist;
 	};	
 
 	/**
-	 * 
+	 * Get the current video from playlist by matching the id
+	 * @param {Object} playList - the playlist to search in
+	 * @param {String} videoId - the id to match
+	 * @return {Object} video object
 	 */
 	var getCurrentVideo = function(playlist, videoId){
 		return playlist
@@ -73,7 +78,7 @@ var videoApi = (function() {
 	};			
 
 	/**
-	 * 
+	 * Create YouTube player
 	 */ 
 	var createYTPlayer = function(){
 		//console.log('init');
@@ -90,7 +95,9 @@ var videoApi = (function() {
 	};
 
 	/**
-	 * 
+	 * Get playlist from API
+	 * {String} playlistId - id of playlist
+	 * {String} pageToken
 	 */ 
 	var getPlaylistFromApi = function(playlistId='PLRhET9MFZHSJoCXIpYBSOdtYth17XC8KJ', pageToken = '' ) {
 		var requestOptions = {
@@ -106,7 +113,7 @@ var videoApi = (function() {
 	};		
 
 	/**
-	 * 
+	 * Insert YouTube iframe api script
 	 */ 
 	var _getYoutubeApiScript = function(){
 		var tag = document.createElement('script');
@@ -123,7 +130,7 @@ var videoApi = (function() {
 	};
 
 	/**
-	 * 
+	 * Handler for YouTube player on ready. 
 	 */  
 	var onPlayerReady = function(event) {
 		console.log('Player Ready');
@@ -137,40 +144,36 @@ var videoApi = (function() {
 	 * the player should play for six seconds and then stop.
 	 */ 	
 	var onPlayerStateChange = function(event) {
-		/*
-		if (event.data == YT.PlayerState.PLAYING && !done) {
-		  setTimeout(stopVideo, 6000);
-		  done = true;
-		}
-		*/
 		if (event.data == YT.PlayerState.CUED){
 			//console.log('Video Cued');
 		}
 	};
 
 	/**
-	 * 
+	 * Start video playback
 	 */ 
 	var playVideo = function() {
 		player.playVideo();
 	};	
 
 	/**
-	 * 
+	 * Stop video playback
 	 */ 
 	var stopVideo = function() {
 		player.stopVideo();
 	};
 
 	/**
-	 * 
+	 * Removes the YouTube player iframe and inserts an empty div with id player
 	 */ 
 	var removePlayer = function() {
-		player.destroy();
+		if(player.destroy){
+			player.destroy();
+		}
 	};	
 
 	/**
-	 * 
+	 * Cue playlist
 	 */ 
 	var cuePlaylist = function(playList, listType, index=0) {
 		//console.log(player);
@@ -180,7 +183,7 @@ var videoApi = (function() {
 	};	
 
 	/**
-	 * 
+	 * Cue video by id
 	 */
 	var cueVideoById = function(videoId) {
 		player.cueVideoById(videoId);

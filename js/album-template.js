@@ -8,13 +8,14 @@
 */
 
 /**
- * Album Template
+ * Templates for albums
  * 
  */
 var albumTemplate = (function() {
 
 	/**
-	 * Template
+	 * Parent template for album listing. Takes an object and passes properties with arrow functions.
+	 * @param {Object} json - a JSON object with albums
 	 * @return 
 	 */   
 	var list = (json) => {
@@ -32,8 +33,9 @@ var albumTemplate = (function() {
 
 	/**
 	 * Template
-	 * @param 
-	 * @param 
+	 * @param {Object} albumItem - object with album
+	 * @param {String} cover - HTML with album cover 
+	 * @param {String} info - HTML with album info 
 	 * @return 
 	 */
 	var listItem = ({ albumItem, cover, info}) => {
@@ -54,7 +56,7 @@ var albumTemplate = (function() {
 
 	/**
 	 * Template
-	 * @param 
+	 * @param {String} cover - property from album object
 	 * @return 
 	 */
 	var listCover = ({cover}) => {
@@ -69,7 +71,8 @@ var albumTemplate = (function() {
 
 	/**
 	 * Template
-	 * @param 
+	 * @param {String} title - property from album object
+	 * @param {String} year - property from album object
 	 * @return 
 	 */
 	var listHeader = ({title, year}) => {
@@ -84,7 +87,8 @@ var albumTemplate = (function() {
 	};	
 
 	/**
-	 * Template
+	 * Parent template for album detail view
+	 * @param {Object} albumData - object with album data
 	 * @return 
 	 */   
 	var albumItem = (albumData) => {
@@ -101,8 +105,10 @@ var albumTemplate = (function() {
 	};	
 
 	/**
-	 * Template
-	 * @param 
+	 * Template for album detail header
+	 * @param {String} title - property from album object
+	 * @param {String} year - property from album object
+	 * @param {String} label - property from album object
 	 * @return 
 	 */
 	var albumItemHeader = ({title, year, label}) => {
@@ -121,7 +127,8 @@ var albumTemplate = (function() {
 	};	
 
 	/**
-	 * Template
+	 * Parent template for album tracks
+	 * @param {Object} trackData - object of track data
 	 * @return 
 	 */
 	var trackList = (trackData) => {
@@ -136,13 +143,12 @@ var albumTemplate = (function() {
 	};
 
 	/**
-	 * Template
-	 * @param 
-	 * @param 
+	 * Template with track items
+	 * @param {String} track - property from album object
+	 * @param {Number} index - track index
 	 * @return 
 	 */
 	var trackListItem = ({ track, index }) => {
-		//console.log(track);
 		let duration = track.duration > 0 || '' ? utils.secondsToMinutes(track.duration): '';
   		return `
 		 	<li class="track-list-item list-group-item d-flex justify-content-start"> 	
@@ -154,7 +160,8 @@ var albumTemplate = (function() {
 	};	
 
 	/**
-	 * Template
+	 * Parent template for album buy-links. 
+	 * {Object} album - object with album data
 	 * @return 
 	 */
 	var purchaseContent = (album) => {
@@ -185,11 +192,11 @@ var albumTemplate = (function() {
 	};			
 
 	/**
-	 * Template
+	 * Template for list of album buy-links
+	 * {Object} purchase - array of objects with buy-links
 	 * @return 
 	 */
 	var purchaseList = (purchase) => {
-		//console.log(purchase);
 		return `
 			<ul class="purchase-list list-group">
 				 ${purchase.map((item) => purchaseItem({
@@ -200,8 +207,8 @@ var albumTemplate = (function() {
 	};
 
 	/**
-	 * Template
-	 * @param 
+	 * Template for list-items of album buy-links
+	 * @param {Object} item - object with buy-link
 	 * @return 
 	 */
 	var purchaseItem = ({item}) => {
