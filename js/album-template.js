@@ -42,7 +42,7 @@ var albumTemplate = (function() {
   		return `
 		 	<div class="album-list-item col-sm-6 col-lg-4 mb-1 fade" data-id="${albumItem.id}" data-title="${albumItem.title}"> 
 		 		<a class="album-detail-link" href="#" title="Oddjob - ${albumItem.title}">
-			 		<div class="card">
+			 		<div class="card d-block">
 							${cover}
 							${info}			 	  	
 			 	  	</div>
