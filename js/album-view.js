@@ -38,7 +38,7 @@ var albumView = (function() {
 		e.preventDefault();
 		//console.log(this.parentNode.dataset.title);
 		albumApi.getAlbumItem(this.parentNode.dataset.id);
-		albumApi.getPurchaseLinks(this.parentNode.dataset.id, albumView.handlePurchaseLinksLoaded);
+		console.log(this.parentNode.dataset.id);
 	};
 
 	/**
@@ -50,6 +50,7 @@ var albumView = (function() {
 		document.querySelector('#albumContainer').innerHTML = '';
 		document.getElementById('albumContainer').innerHTML = albumTemplate.albumItem(response);		
 		albumApi.getAlbumTracks(response.title);
+		albumApi.getPurchaseLinks(response.id, albumView.handlePurchaseLinksLoaded);
 		_scrollToAlbum();
 		view.delayFadeInContent('.album-detail');
 	};
@@ -90,13 +91,8 @@ var albumView = (function() {
 	 */ 
 	var handlePurchaseLinksLoaded = function(response){
 		//console.log(response);
-		/*
-		if(document.querySelector('#purchaseWrapper') || ''){
-			document.querySelector('#purchaseLinks').parentNode.removeChild(document.querySelector('#purchaseLinks'));
-			document.querySelector('#purchaseWrapper').parentNode.removeChild(document.querySelector('#purchaseWrapper'));
-		}*/
 		let purchaseLinks = document.createElement('div');
-		purchaseLinks.setAttribute('id', 'purchaseWrapper');
+		purchaseLinks.setAttribute('id', 'purchaseWrapper');		
 		purchaseLinks.innerHTML = albumTemplate.purchaseLinks(response);
 		document.querySelector('#albumContainer').appendChild(purchaseLinks);	
 	};		
