@@ -9,19 +9,18 @@ Attila Cederbygd
 **Projektlänk:** https://attilac.github.io/ajax-open-apis/
 
 ### Använda teknologier
-* **JSON-Server**
-* **Fetch**
-* **Vanilla JavaScript**
-* **Bootstrap**
-* **jQuery(for Bootstrap)**
+* JSON-Server
+* Fetch
+* Vanilla JavaScript
+* Bootstrap
+* jQuery(for Bootstrap)
 
 
 ### API-er använda
-* **YouTube IFrame Player API:** https://developers.google.com/youtube/iframe_api_reference
-* **YouTube Data API:** https://developers.google.com/youtube/v3/
-* **Last.fm API:** https://www.last.fm/api
-
-**JSON-Server** https://oddjob-albums.herokuapp.com/
+* YouTube IFrame Player API: https://developers.google.com/youtube/iframe_api_reference
+* YouTube Data API: https://developers.google.com/youtube/v3/
+* Last.fm API: https://www.last.fm/api
+* JSON-Server https://oddjob-albums.herokuapp.com/
 
 ### TODO
 
