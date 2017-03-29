@@ -6298,6 +6298,9 @@ a.text-gray-dark:focus, a.text-gray-dark:hover {
 .bg-white {
   background-color: #fff; }
 
+.bg-black {
+  background-color: #000; }
+
 small {
   font-weight: 300; }
 

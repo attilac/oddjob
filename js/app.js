@@ -15,6 +15,7 @@ var view = (function() {
 	 */ 
 	var init = function(){
 		_addPageLinkHandlers();
+		delayFadeInContent('#home');
 	};
 
 	/**
@@ -39,7 +40,7 @@ var view = (function() {
 		.forEach(function(link){
 			link.addEventListener('click', pageLinkOnClick, false);
 		});
-
+		document.getElementById('homePageLink').addEventListener('click', homePageLinkOnClick, 'false');
 		document.getElementById('videoPageLink').addEventListener('click', videoPageLinkOnClick, 'false');
 		document.getElementById('audioPageLink').addEventListener('click', audioPageLinkOnClick, 'false');
 
@@ -83,7 +84,10 @@ var view = (function() {
 		if(pageId === 0){
 			console.log('Remove Albums');
 			document.getElementById('albumContainer').innerHTML = '';
-		}		
+		}	
+		if(pageId === 2){
+			document.getElementById('home').classList.remove('show');
+		}			
 	};	
 
 	/**
@@ -104,6 +108,17 @@ var view = (function() {
 		e.preventDefault();
 		albumApi.getAlbumList();
 	};
+
+	/**
+	 * 
+	 * Click handler for home page link
+	 * {Event} e - the event that was triggered
+	 */ 
+	var homePageLinkOnClick = function(e){
+		e.preventDefault();
+		delayFadeInContent('#home');
+		
+	};	
 
 	/**
 	 * Show error alert box
