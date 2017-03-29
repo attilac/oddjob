@@ -90,10 +90,11 @@ var albumView = (function() {
 	 */ 
 	var handlePurchaseLinksLoaded = function(response){
 		//console.log(response);
+		/*
 		if(document.querySelector('#purchaseWrapper') || ''){
 			document.querySelector('#purchaseLinks').parentNode.removeChild(document.querySelector('#purchaseLinks'));
 			document.querySelector('#purchaseWrapper').parentNode.removeChild(document.querySelector('#purchaseWrapper'));
-		}
+		}*/
 		let purchaseLinks = document.createElement('div');
 		purchaseLinks.setAttribute('id', 'purchaseWrapper');
 		purchaseLinks.innerHTML = albumTemplate.purchaseLinks(response);
