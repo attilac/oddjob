@@ -38,6 +38,7 @@ var albumView = (function() {
 		e.preventDefault();
 		//console.log(this.parentNode.dataset.title);
 		albumApi.getAlbumItem(this.parentNode.dataset.id);
+		albumApi.getPurchaseLinks(this.parentNode.dataset.id, albumView.handlePurchaseLinksLoaded);
 	};
 
 	/**
@@ -46,8 +47,10 @@ var albumView = (function() {
 	 */ 
 	var handleAlbumItemLoaded = function(response){	
 		//console.log(response);
+		document.querySelector('#albumContainer').innerHTML = '';
 		document.getElementById('albumContainer').innerHTML = albumTemplate.albumItem(response);		
 		albumApi.getAlbumTracks(response.title);
+		_scrollToAlbum();
 		view.delayFadeInContent('.album-detail');
 	};
 
@@ -68,17 +71,40 @@ var albumView = (function() {
 	var purchaseLinkOnClick = function(e){
 		e.preventDefault();
 		//console.log(this.dataset.id);
-		albumApi.getPurchaseLinks(this.dataset.id);
+		albumApi.getPurchaseLinks(this.dataset.id, albumView.handlePurchaseModalContentLoaded);
 	};
 
 	/**
 	  * Handler for album buy-links on loaded. Appends template to modal and opens it.
 	  * {Object} response - object with album buy-links
 	 */ 
+	var handlePurchaseModalContentLoaded = function(response){
+		//console.log(response);
+		document.querySelector('#purchaseModal .modal-dialog').innerHTML = albumTemplate.purchaseModalContent(response);
+		$('#purchaseModal').modal('show');		
+	};	
+
+	/**
+	  * Handler for album buy-links on loaded from album detail view.
+	  * {Object} response - object with album buy-links
+	 */ 
 	var handlePurchaseLinksLoaded = function(response){
 		//console.log(response);
-		document.querySelector('#purchaseModal .modal-dialog').innerHTML = albumTemplate.purchaseContent(response);
-		$('#purchaseModal').modal('show');		
+		if(document.querySelector('#purchaseWrapper') || ''){
+			document.querySelector('#purchaseLinks').parentNode.removeChild(document.querySelector('#purchaseLinks'));
+			document.querySelector('#purchaseWrapper').parentNode.removeChild(document.querySelector('#purchaseWrapper'));
+		}
+		let purchaseLinks = document.createElement('div');
+		purchaseLinks.setAttribute('id', 'purchaseWrapper');
+		purchaseLinks.innerHTML = albumTemplate.purchaseLinks(response);
+		document.querySelector('#albumContainer').appendChild(purchaseLinks);	
+	};		
+
+	/**
+	 * Scroll to album
+	 */ 
+	var _scrollToAlbum = function() {
+		zenscroll.to(document.getElementById('albumContainer'), 500);
 	};	
 
     // Reveal public pointers to
@@ -87,6 +113,7 @@ var albumView = (function() {
 		handleAlbumListLoaded: handleAlbumListLoaded,
 		handleAlbumItemLoaded: handleAlbumItemLoaded,
 		handleAlbumTracksLoaded: handleAlbumTracksLoaded,
+		handlePurchaseModalContentLoaded: handlePurchaseModalContentLoaded,
 		handlePurchaseLinksLoaded: handlePurchaseLinksLoaded
     };	
 })();	 

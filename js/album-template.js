@@ -164,7 +164,7 @@ var albumTemplate = (function() {
 	 * {Object} album - object with album data
 	 * @return 
 	 */
-	var purchaseContent = (album) => {
+	var purchaseModalContent = (album) => {
 		//console.log(album);
 		return `
 	      <div class="modal-content">
@@ -220,6 +220,20 @@ var albumTemplate = (function() {
 		`;
 	};	
 
+	/**
+	 * Parent template for album buy-links. 
+	 * {Object} album - object with album data
+	 * @return 
+	 */
+	var purchaseLinks = (album) => {
+		//console.log(album);
+		return `
+			<div id="purchaseLinks" class="purchase-container">
+			 	${purchaseList(album.purchase)}
+			</div>        	
+		`;
+	};		
+
 	// Reveal public pointers to
     // private functions and properties
     return {
@@ -227,6 +241,7 @@ var albumTemplate = (function() {
         albumItem: albumItem,
         trackList: trackList,
         purchaseList: purchaseList,
-        purchaseContent: purchaseContent	
+        purchaseModalContent: purchaseModalContent,
+        purchaseLinks: purchaseLinks	
     };	
 })();	

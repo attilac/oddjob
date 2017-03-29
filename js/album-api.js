@@ -45,8 +45,8 @@ var albumApi = (function() {
 	/**
 	 * 
 	 */ 
-	var getPurchaseLinks = function(albumId){
-		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums/' + albumId, '', albumView.handlePurchaseLinksLoaded);
+	var getPurchaseLinks = function(albumId, callback){
+		ajaxFetch.getDataFromApi('https://oddjob-albums.herokuapp.com/albums/' + albumId, '', callback);
 	};
 
 	// Reveal public pointers to

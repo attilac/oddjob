@@ -2,6 +2,7 @@
 console.log('---View');
 
 /**
+ * The main view. Functions for pages
  * Revealing Module Pattern
  * 
  */
@@ -10,35 +11,34 @@ var view = (function() {
 	var _currentPage;
 
 	/**
-	 * 
+	 * Init function
 	 */ 
 	var init = function(){
 		_addPageLinkHandlers();
 	};
 
 	/**
-	 * 
+	 * Set the current page
 	 */ 
 	var setCurrentPage = function(index){
 		_currentPage = Number(index);
 	};	
 
 	/**
-	 * 
+	 * Get the current page
 	 */ 
 	var getCurrentPage = function(){
 		return _currentPage;
 	};		
 
 	/**
-	 * 
+	 * Add event handlers to links
 	 */ 
 	var _addPageLinkHandlers = function(){
-		Array.prototype.slice.call(document.querySelectorAll('.navbar .nav-link'))
+		Array.prototype.slice.call(document.querySelectorAll('.navbar .page-nav-link'))
 		.forEach(function(link){
 			link.addEventListener('click', pageLinkOnClick, false);
 		});
-		document.getElementById('homePageLink').addEventListener('click', pageLinkOnClick, 'false');
 
 		document.getElementById('videoPageLink').addEventListener('click', videoPageLinkOnClick, 'false');
 		document.getElementById('audioPageLink').addEventListener('click', audioPageLinkOnClick, 'false');
@@ -46,7 +46,8 @@ var view = (function() {
 	};
 
 	/**
-	 * 
+	 * Handler for page links on click
+	 * {Event} event - the event that was triggered
 	 */ 
 	var pageLinkOnClick = function(event){
 		event.preventDefault();
@@ -64,12 +65,12 @@ var view = (function() {
 	    	}
 	    }); 
 
-
 	    closeErrorAlert();
 	};
 
 	/**
-	 * 
+	 * Handler on page hidden. Clears page content
+	 * {number} pageId - the id of the page
 	 */ 
 	var pageOnHidden = function(pageId){
 		if(pageId === 1 && document.querySelector('iframe#player') || ''){
@@ -86,7 +87,8 @@ var view = (function() {
 	};	
 
 	/**
-	 * 
+	 * Click handler for video page link
+	 * {Event} e - the event that was triggered
 	 */ 
 	var videoPageLinkOnClick = function(e){
 		e.preventDefault();
@@ -95,6 +97,8 @@ var view = (function() {
 
 	/**
 	 * 
+	 * Click handler for album page link
+	 * {Event} e - the event that was triggered
 	 */ 
 	var audioPageLinkOnClick = function(e){
 		e.preventDefault();
@@ -102,7 +106,7 @@ var view = (function() {
 	};
 
 	/**
-	 * 
+	 * Show error alert box
 	 */
 	var showErrorAlert = function(error){
 		document.querySelector('.ajax-error-container').classList.remove('hidden');
@@ -110,7 +114,7 @@ var view = (function() {
 	};	
 
 	/**
-	 * 
+	 * Hide error alert box
 	 */
 	var closeErrorAlert = function(){
 		document.querySelector('.ajax-error-container').classList.add('hidden');
@@ -120,24 +124,25 @@ var view = (function() {
 	};		
 
 	/**
-	 * 
+	 * Show spinner icon
 	 */
 	var showLoadingSpinner = function(){
 		document.querySelector('.ajax-load-indicator-container').classList.remove('hidden');
 	};
 
 	/**
-	 * 
+	 * Hide spinner icon
 	 */
 	var hideLoadingSpinner = function(){
 		document.querySelector('.ajax-load-indicator-container').classList.add('hidden');
 	};	
 
 	/**
-	 * 
+	 * Template for alertbox
+	 * {String} message - the alert message
+	 * {String} alertClass - classname of the alert
 	 */
 	var alertBox = (message, alertClass="alert-warning") =>{
-		//console.log('message');
 		return `
 		  <div class="alert ${alertClass} alert-dismissible fade show" role="alert">
 		    <button type="button" class="close" data-dismiss="alert" aria-label="Close">
@@ -149,7 +154,8 @@ var view = (function() {
 	};	
 
 	/**
-	 * 
+	 * Delays the fadeInContent function
+	 * {String} className - className to element to fade
 	 */
 	var delayFadeInContent = function(className) {
 	  	//window.setTimeout(FadeInAlbums, 200);
@@ -159,7 +165,8 @@ var view = (function() {
 	};
 
 	/**
-	 * 
+	 * Fade in element by adding show class. 
+	 * {String} className - className to element to fade
 	 */	
 	 var fadeInContent = function(className){
 		Array.prototype.slice.call(document.querySelectorAll(className))
