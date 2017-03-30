@@ -36,6 +36,7 @@ var albumView = (function() {
 	 */
 	var albumItemOnClick = function(e){
 		e.preventDefault();
+		albumApi.setCurrentAlbum(this.parentNode.dataset.id);
 		//console.log(this.parentNode.dataset.title);
 		albumApi.getAlbumItem(this.parentNode.dataset.id);
 		console.log(this.parentNode.dataset.id);
@@ -47,10 +48,10 @@ var albumView = (function() {
 	 */ 
 	var handleAlbumItemLoaded = function(response){	
 		//console.log(response);
-		document.querySelector('#albumContainer').innerHTML = '';
-		document.getElementById('albumContainer').innerHTML = albumTemplate.albumItem(response);		
+		document.getElementById('albumContainer').innerHTML = '';
+		document.getElementById('albumContainer').innerHTML = albumTemplate.albumItem(response);	
+		albumView.handlePurchaseLinksLoaded(response);	
 		albumApi.getAlbumTracks(response.title);
-		albumApi.getPurchaseLinks(response.id, albumView.handlePurchaseLinksLoaded);
 		_scrollToAlbum();
 		view.delayFadeInContent('.album-detail');
 	};
@@ -63,6 +64,7 @@ var albumView = (function() {
 		let album = response.album || '' ? response.album: '';
 		//console.log(album);
 		document.querySelector('#albumContainer .tracks-container').innerHTML = albumTemplate.trackList(album.tracks.track);
+		//albumApi.getPurchaseLinks(albumApi.getCurrentAlbum(), albumView.handlePurchaseLinksLoaded);
 	};	
 
 	/**

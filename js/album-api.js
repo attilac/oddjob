@@ -15,6 +15,20 @@ var albumApi = (function() {
 	};
 
 	/**
+	 * 
+	 */ 
+	var getCurrentAlbum = function(){	
+		return _currentAlbum;	
+	};	
+
+	/**
+	 * 
+	 */ 
+	var setCurrentAlbum = function(albumiId){
+		_currentAlbum = albumiId;		
+	};	
+
+	/**
 	 * Get list of albums from API
 	 */ 
 	var getAlbumList = function() {
@@ -56,7 +70,9 @@ var albumApi = (function() {
         getAlbumList: getAlbumList,
         getAlbumItem: getAlbumItem,
         getAlbumTracks: getAlbumTracks,
-        getPurchaseLinks: getPurchaseLinks   
+        getPurchaseLinks: getPurchaseLinks ,
+        getCurrentAlbum: getCurrentAlbum,
+        setCurrentAlbum: setCurrentAlbum  
     };
 
 })();  
