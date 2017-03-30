@@ -1,43 +1,42 @@
-# AJAX Assignment - Open APIs
+# Oddjob
+**Namn** Attila Cederbygd **Kurs:** JavaScript2, **Utbildning:** Fend 16, Nackademin
 
-## Oddjob
-Del av hemsida till bandet Oddjob för att presentera deras album och visa videos.
-
-Attila Cederbygd
-
-**Kurs:** JavaScript2, **Utbildning:** Fend 16, **Skola:** Nackademin
+AJAX Assignment - Open APIs
 
 **Projektlänk:** https://attilac.github.io/ajax-open-apis/
 
-### Använda teknologier
+#### Projektbeskrivning
+Del av hemsida till bandet Oddjob för att presentera deras album och visa videos.
+
+Syftet är dels att uppdatera deras befintliga sida till att bli anpassad för fler enheter (responsiv).
+Dels underlätta uppdatering genom att använda data från API-er som YouTube.
+När nya klipp läggs upp reflekteras det på hemsidan. Man slipper uppdatera samma data på flera ställen.
+
+Hemsidan blir en slags uppsamlingshubb för allt relaterat till bandet.
+
+#### Använda teknologier
 * JSON-Server
 * Fetch
 * Vanilla JavaScript
 * Bootstrap
 * jQuery(for Bootstrap)
 
-
-### API-er använda
+#### API-er använda
 * YouTube IFrame Player API: https://developers.google.com/youtube/iframe_api_reference
 * YouTube Data API: https://developers.google.com/youtube/v3/
 * Last.fm API: https://www.last.fm/api
 * JSON-Server https://oddjob-albums.herokuapp.com/
 
-### TODO
+#### TODO
+##### Albums
+* Next/Prev Navigation for album detail-view
+* Sticky Audio Player to preview tracks
+* Display album description (flip-card on cover or carousel-like interface)
 
-##### Projektet: 
+##### Videos
+* Menu to choose different playlists. 
 
-* Din kod ska finnas på __GitHub__ och ha en tydlig `README` med följande information:
-    - ditt namn, kurs och utbildning
-    - länk till projektet live
-    - kort beskrivning av applikationen, dess syfte och funktionalitet.
-    - punktlista med vilka teknologier du använt.
-    - kort beskrivning av det API/APIer du använt samt länk till dem.
-    - kortfattat om din arbetsprocess och vad som skulle kodmässigt kunna förbättras. Man kan t.ex. ha en "TODO"-sektion i ens `README` med saker som skulle kunna implementeras om tid fanns.
-* **Projektet ska kännas som en färdig produkt**
-
-
-
-[Markdown Cheat Sheet för att skriva README](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
-
+##### General
+* News Section on startpage (facebook API)
+* Fetching gig data from facebook API 
 
