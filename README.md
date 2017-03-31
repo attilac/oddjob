@@ -22,7 +22,7 @@ Länkar till Spotify och iTunes finns på detaljvyn och går även att komma åt
 Videosidan hämtar paginerad playlistdata från YouTube och visar upp den som HTML. Navigationen gör ny anrop till YouTube och hämtar data.
 
 ### Arbetsprocess
-
+Förra uppgiften med designpatterns gav mersmak, så jag bestämde tidigt för att dela upp koden i moduler i en löst hållen Model-View pattern. Album och film-delarna delades in i tre delar, den första View med funktioner som har hand om interfacet, den andra en api-modul som anropar API-t, returnerar arrayer med objekt av JSON-data och skickas vidare till en tredje template-modul som populeras med objektens properties för att slutligen returnera html. Template-modulens funktioner använder sig av arrow-functions för att kunna skicka vidare properties i nästlade templates. Separationen känns clean då man kan editera html-en utan att behöva röra de andra modulerna. Målet var att kunna återanvända modulerna till andra projekt. Tanken var att möjliggöra edits på ett enkelt sätt av molekyler som t.ex. header och bild genom att separera varje del och sedan kunna sätta ihop de till organismer.
 
 ### Teknologier
 * JSON-Server
