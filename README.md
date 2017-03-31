@@ -6,6 +6,8 @@ AJAX Assignment - Open APIs
 ###### Projektlänkar
 **Livesida:** https://attilac.github.io/ajax-open-apis/
 
+**Github Repo:** https://github.com/attilac/ajax-open-apis/
+
 ## Beskrivning av appen
 Del av hemsida till bandet Oddjob för att presentera deras album och visa videos.
 
